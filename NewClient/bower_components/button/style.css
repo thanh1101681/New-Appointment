@@ -1,0 +1,14 @@
+.button, .button:visited {
+    background-color: #958457;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.button:hover{
+    background-color: #ff3366;
+}

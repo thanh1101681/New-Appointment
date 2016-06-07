@@ -1,0 +1,51 @@
+.sidebar-wrapper{
+    position: fixed;
+    width: 200px;
+    font-size: 0.98em;
+    background: #000;
+    float: left;
+}
+.sidebar-menu{
+    width: auto;
+    height: auto;
+}
+.sidebar-menu > li > a{
+    height: 2.75em;
+    line-height: 2.75em;
+    text-indent: 1.25em;
+    display: block;
+    position: relative;
+    font-weight: 600;
+    color: #fff;
+}
+.sidebar-menu > li > a:hover{
+    color: #ff3366;
+    transition: all 0.25s;
+}
+.sidebar-menu ul li a{
+    background: white;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+    height: 2.75em;
+    line-height: 2.75em;
+    text-indent: 2.75em;
+    display: block;
+    position: relative;
+    font-size: 0.923em;
+    font-weight: 400;
+    color: #000;
+}
+.sidebar-menu ul li a:hover{
+    color: #ff3366;
+    transition: all 0.25s;
+}
+.sidebar-menu > li > a.sidebar-image{
+    text-indent: 0;
+    height: auto;
+    display: block;
+    position: relative;
+}
+.sidebar-menu > li > a.sidebar-image img{
+    width: 80%;
+    padding: 1em;
+}

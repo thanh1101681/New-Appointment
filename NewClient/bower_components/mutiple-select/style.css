@@ -1,0 +1,48 @@
+.mutiple-select{
+    position: relative;
+}
+.mutiple-select > .fake-input{
+    min-height: 32px;
+    border: 1px solid #ccc;
+    cursor: text;
+}
+.mutiple-select > .fake-input > .placeholder{
+    color: #ccc;
+    padding: 0.4em 0 0 0.6em;
+}
+.mutiple-select > .fake-input > .display_alt{
+    padding: 0.4em 0 0 0.6em;
+}
+.mutiple-select > ul.popup{
+    width: auto;
+    min-width: 150px;
+    max-height: 134px;
+    border: 1px solid #ccc;
+    background-color: white;
+    z-index: 2;
+    position: absolute;
+    top: 33px;
+    overflow: auto;
+}
+.mutiple-select > ul.popup li{
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.mutiple-select > ul.popup li.selected{
+    background-color: #ff3366;
+    color: white;
+}
+.mutiple-select > .fake-input > ul.display{
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 34px;
+}
+.mutiple-select > .fake-input > ul.display li{
+    padding: 0 10px;
+    margin: 5px 5px;
+    background-color: #ff3366;
+    color: white;
+    display: inline-block;
+}

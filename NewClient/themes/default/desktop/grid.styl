@@ -1,0 +1,72 @@
+@import '../lib/variables'
+
+add(a, b=$col, c=$padding)
+    a+b+c*2
+
+body
+html
+    min-width $width
+    margin 0
+    padding 0
+    font-size $font-size
+    line-height $line-height
+    font-family: $font-family
+    color $color
+    
+.container
+    margin 0 auto
+    width $width
+    zoom: 1
+    &:before
+    &:after
+        content '.'
+        display block
+        overflow hidden
+        visibility hidden
+        font-size 0
+        line-height 0
+        width 0
+        height 0
+    &:after
+        clear: both
+    .grid-1
+        width add(0px, $col, 0)
+    .grid-2
+        width add($col)
+    .grid-3
+        width add($col*2+$padding*2)
+    .grid-4
+        width add($col*3+$padding*4)
+    .grid-5
+        width add($col*4+$padding*6)
+    .grid-6
+        width add($col*5+$padding*8)
+    .grid-7
+        width add($col*6+$padding*10)
+    .grid-8
+        width add($col*7+$padding*12)
+    .grid-9
+        width add($col*8+$padding*14)
+    .grid-10
+        width add($col*9+$padding*16)
+    .grid-11
+        width add($col*10+$padding*18)
+    .grid-12
+        width add($col*11+$padding*20)
+
+.grid-1
+.grid-2
+.grid-3
+.grid-4
+.grid-5
+.grid-6
+.grid-7
+.grid-8
+.grid-9
+.grid-10
+.grid-11
+.grid-12
+    display inline
+    float left
+    padding-left $padding
+    padding-right $padding

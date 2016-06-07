@@ -1,0 +1,82 @@
+body,
+html {
+  min-width: 480px;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.5em;
+  font-family: Tahoma, Geneva, sans-serif;
+  color: #333;
+}
+.container {
+  margin: 0 auto;
+  width: 480px;
+  zoom: 1;
+}
+.container:before,
+.container:after {
+  content: '.';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+}
+.container:after {
+  clear: both;
+}
+.container .grid-1 {
+  width: 40px;
+}
+.container .grid-2 {
+  width: 80px;
+}
+.container .grid-3 {
+  width: 120px;
+}
+.container .grid-4 {
+  width: 160px;
+}
+.container .grid-5 {
+  width: 200px;
+}
+.container .grid-6 {
+  width: 240px;
+}
+.container .grid-7 {
+  width: 280px;
+}
+.container .grid-8 {
+  width: 320px;
+}
+.container .grid-9 {
+  width: 360px;
+}
+.container .grid-10 {
+  width: 400px;
+}
+.container .grid-11 {
+  width: 440px;
+}
+.container .grid-12 {
+  width: 480px;
+}
+.grid-1,
+.grid-2,
+.grid-3,
+.grid-4,
+.grid-5,
+.grid-6,
+.grid-7,
+.grid-8,
+.grid-9,
+.grid-10,
+.grid-11,
+.grid-12 {
+  display: inline;
+  float: left;
+  padding-left: 0px;
+  padding-right: 0px;
+}

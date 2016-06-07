@@ -1,0 +1,30 @@
+.breadcrumb {
+    display: inline-block;
+    overflow: hidden;
+    position: fixed;
+    top: 40px;
+    width: inherit;
+    background: #958457;
+}
+
+.breadcrumb a {
+    font-weight: bold;
+    outline: none;
+    display: inline-block;  
+    font-size: 0.9em;
+    line-height: 24px;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    background: transparent;
+    position: relative;
+}
+.breadcrumb i{
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.8em;
+}
+/*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
+.breadcrumb span:first-child {
+    padding-left: 10px;
+}

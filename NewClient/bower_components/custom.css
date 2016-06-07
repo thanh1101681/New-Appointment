@@ -1,0 +1,73 @@
+html, body{
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.68;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    font-family: Georgia,sans-serif;
+    width: 940px;
+    margin: 0 auto;
+}
+a{
+    cursor: pointer;
+    text-decoration: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+    -webkit-appearance: none;
+    margin: 0px;
+}
+ul,
+ul ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#header-app{
+    margin-left: 200px;
+    position: relative;
+    width: 824px;
+    z-index: 2;
+}
+#main-app{
+    margin-top: 60px;
+    margin-left: 200px;
+    position: relative;
+    padding: 20px 20px 40px 30px;
+    width: 772px;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+.required{
+    color: #ff3366;
+}
+.message{
+    margin-top: 4px;
+    font-size: 0.925em;
+}
+::-webkit-scrollbar {
+    width: 6px;
+}
+ ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background: white;
+}
+ ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    background: #000;
+}
+.scroll-up{
+    position: fixed;
+    bottom: 20px;
+    right: 60px;
+    display: none;
+    cursor: pointer;
+}
+.scroll-up i{
+    font-size: 2.8em;
+    color: #000;
+}
+.card{
+    
+}

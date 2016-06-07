@@ -1,0 +1,63 @@
+div[contenteditable="true"]{
+    outline: none;
+    min-height: 250px;
+    margin: 0.25em 0;
+    padding: 0.5em 0.6em;
+    border: 1px solid #ccc;
+    margin-top: 0;
+}
+.rte ul.toolbar{
+    height: 40px;
+    background: #958457;
+    color: white;
+    margin: 0;
+}
+.rte ul.toolbar li{
+    display: inline-block;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    text-align: center;
+    min-width: 25px;
+}
+.rte ul.toolbar li:hover{
+    background-color: #ff3366;
+    transition: all 0.25s;
+}
+.rte textarea{
+    min-height: 250px;
+    margin-top: 0;
+}
+.rte .placeholder{
+    color: #ccc;
+    position: absolute;
+    padding: 0.6em 0 0 0.8em;
+}
+.rte ul.toolbar li div.popup{
+    position: relative;
+}
+.rte ul.toolbar li div.popup ul{
+    position: absolute;
+    bottom: 50px;
+    background: #000;
+    color: white;
+    min-width: 130px;
+    left: -50px;
+    z-index: 2;
+}
+.rte ul.toolbar li div.popup ul li{
+    display: inline-block;
+    min-width: 20px;
+}
+.rte ul.toolbar li div.popup div.arrow{
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #000;
+    position: absolute;
+    bottom: 40px;
+    z-index: 2;
+    left: 2px;
+}
