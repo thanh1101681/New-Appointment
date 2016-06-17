@@ -3,7 +3,7 @@ var FormWizard = function () {
 
     return {
         //main function to initiate the module
-        init: function (funcOption) {
+        init: function (options) {
             if (!jQuery().bootstrapWizard) {
                 return;
             }
@@ -27,81 +27,87 @@ var FormWizard = function () {
             var form = $('#submit_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
+            //meditek custom
+            var rules = options &&
+                        options.validate &&
+                        options.validate.rules ?
+                        options.validate.rules :
+                        {
+                            username: {
+                                minlength: 5,
+                                required: true
+                            },
+                            password: {
+                                minlength: 5,
+                                required: true
+                            },
+                            rpassword: {
+                                minlength: 5,
+                                required: true,
+                                equalTo: "#submit_form_password"
+                            },
+                            fullname: {
+                                required: true
+                            },
+                            email: {
+                                required: true,
+                                email: true
+                            },
+                            phone: {
+                                required: true
+                            },
+                            gender: {
+                                required: true
+                            },
+                            address: {
+                                required: true
+                            },
+                            city: {
+                                required: true
+                            },
+                            country: {
+                                required: true
+                            },
+                            card_name: {
+                                required: true
+                            },
+                            card_number: {
+                                minlength: 16,
+                                maxlength: 16,
+                                required: true
+                            },
+                            card_cvc: {
+                                digits: true,
+                                required: true,
+                                minlength: 3,
+                                maxlength: 4
+                            },
+                            card_expiry_date: {
+                                required: true
+                            },
+                            'payment[]': {
+                                required: true,
+                                minlength: 1
+                            }
+                        };
+                var messages = options &&
+                               options.validate &&
+                               options.validate.messages ?
+                               options.validate.messages :
+                               {
+                                    'payment[]': {
+                                        required: "Please select at least one option",
+                                        minlength: jQuery.validator.format("Please select at least one option")
+                                    }
+                                };
 
             form.validate({
                 doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
                 errorElement: 'span', //default input error message container
                 errorClass: 'help-block help-block-error', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input
-                rules: {
-                    //account
-                    username: {
-                        minlength: 5,
-                        required: true
-                    },
-                    password: {
-                        minlength: 5,
-                        required: true
-                    },
-                    rpassword: {
-                        minlength: 5,
-                        required: true,
-                        equalTo: "#submit_form_password"
-                    },
-                    //profile
-                    fullname: {
-                        required: true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    phone: {
-                        required: true
-                    },
-                    gender: {
-                        required: true
-                    },
-                    address: {
-                        required: true
-                    },
-                    city: {
-                        required: true
-                    },
-                    country: {
-                        required: true
-                    },
-                    //payment
-                    card_name: {
-                        required: true
-                    },
-                    card_number: {
-                        minlength: 16,
-                        maxlength: 16,
-                        required: true
-                    },
-                    card_cvc: {
-                        digits: true,
-                        required: true,
-                        minlength: 3,
-                        maxlength: 4
-                    },
-                    card_expiry_date: {
-                        required: true
-                    },
-                    'payment[]': {
-                        required: true,
-                        minlength: 1
-                    }
-                },
-
-                messages: { // custom messages for radio buttons and checkboxes
-                    'payment[]': {
-                        required: "Please select at least one option",
-                        minlength: jQuery.validator.format("Please select at least one option")
-                    }
-                },
-
+                rules: rules,
+                messages: messages,
                 errorPlacement: function (error, element) { // render error placement for each input type
                     if (element.attr("name") == "gender") { // for uniform radio buttons, insert the after the given container
                         error.insertAfter("#form_gender_error");
@@ -215,7 +221,6 @@ var FormWizard = function () {
                     handleTitle(tab, navigation, clickedIndex);
                 },
                 onNext: function (tab, navigation, index) {
-                    console.log("index ",index)
                     success.hide();
                     error.hide();
 
@@ -223,13 +228,6 @@ var FormWizard = function () {
                         return false;
                     }
 
-                    if(funcOption) {
-                        for(var key in funcOption) {
-                            if(typeof funcOption[key] !== 'undefined') {
-                                funcOption[key](index, tab, navigation);
-                            }
-                        }
-                    }
                     handleTitle(tab, navigation, index);
                 },
                 onPrevious: function (tab, navigation, index) {

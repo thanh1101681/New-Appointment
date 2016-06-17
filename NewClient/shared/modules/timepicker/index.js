@@ -9,13 +9,6 @@ class Timepicker extends Component {
 		labelWidth: PropTypes.string,
         inputWidth: PropTypes.string,
 	}
-	getDefaultProps(){
-		return {
-			data_default_time: "",
-			className: "col-lg-3 col-md-3",
-            labelWidth: "col-lg-8 col-md-8",
-		};
-	}
 	componentDidMount(){
 		var self = this;
 		$(this.refs.timepicker).timepicker({
@@ -47,6 +40,7 @@ class Timepicker extends Component {
 				className="form-control" 
 				ref="timepicker"
 				placeholder="hh:mm"
+				timepicker={this.props.timepicker}
 				required={this.props.required}
 				data-default-time={this.props.data_default_time}
 				readOnly="true" />
@@ -83,5 +77,10 @@ class Timepicker extends Component {
 		if (this.props.type == 0) return r0;
 		return r1;
 	}
+}
+Timepicker.defaultProps = {
+	data_default_time: "",
+	className: "col-lg-3 col-md-3",
+    labelWidth: "col-lg-8 col-md-8"
 }
 export default Timepicker

@@ -13,21 +13,6 @@ class Dropdown extends Component {
 		labelWidth: PropTypes.string,
         inputWidth: PropTypes.string,
 	}
-	getDefaultProps(){
-		return {
-			className: "",
-			defaultValue: "",
-			multiple: false,
-			disabled: false,
-			required: false,
-			size: 1,
-			data: [
-				{value: "", name: ""},
-			],
-			className: "col-lg-3 col-md-3",
-            labelWidth: "col-lg-8 col-md-8",
-		};
-	}
 	componentDidMount(){
 		if (this.props.type == 2) {
             $(this.refs.labelWidth).addClass(this.props.labelWidth);
@@ -103,5 +88,18 @@ class Dropdown extends Component {
 		if (this.props.type == 0) return r0;
 		return r1;
 	}
+}
+Dropdown.defaultProps = {
+	className: "",
+	defaultValue: "",
+	multiple: false,
+	disabled: false,
+	required: false,
+	size: 1,
+	data: [
+		{value: "", name: ""},
+	],
+	className: "col-lg-3 col-md-3",
+    labelWidth: "col-lg-8 col-md-8"
 }
 export default Dropdown

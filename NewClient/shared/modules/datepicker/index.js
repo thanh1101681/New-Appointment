@@ -10,13 +10,6 @@ class Datepicker extends Component {
         startDate: PropTypes.string,
         endDate: PropTypes.string,
 	}
-	getDefaultProps(){
-		return {
-			type: 1,
-			className: "col-lg-3 col-md-3",
-            labelWidth: "col-lg-8 col-md-8",
-		};
-	}
 	componentDidMount(){
 		var self = this;
 		$(this.refs.datepicker).datepicker({
@@ -79,5 +72,10 @@ class Datepicker extends Component {
 		if (this.props.type == 0) return r0;
 		return r1;
 	}
+}
+Datepicker.defaultProps = {
+	type: 1,
+	className: "col-lg-3 col-md-3",
+    labelWidth: "col-lg-8 col-md-8"
 }
 export default Datepicker

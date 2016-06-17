@@ -13,14 +13,6 @@ class InputText extends Component {
         inputWidth: PropTypes.string,
         onChange: PropTypes.func,
 	}
-	getDefaultProps(){
-		return {
-			type: 1,
-			hide: false,
-			className: "col-lg-3 col-md-3",
-            labelWidth: "col-lg-8 col-md-8",
-		};
-	}
 	componentDidMount(){
 		if(this.props.hide == true)
 			$(this.refs.input).hide();
@@ -49,7 +41,7 @@ class InputText extends Component {
 	}
 	render(){
 		var required = this.props.required == true ? <span className="required"> * </span> : '';
-		var help_block = this.props.required == true ? <span className="help-block"> Provide your {this.props.label} </span> : '';
+		var help_block = this.props.required == true ? <span className="help-block help-block-error" data-required="sasasasa"> Provide your {this.props.label} </span> : '';
 		var r0 = 
 			<input type="text" 
 				name={this.props.name} 
@@ -94,4 +86,10 @@ class InputText extends Component {
 		return r1;
 	}
 }
+InputText.defaultProps = {
+			type: 1,
+			hide: false,
+			className: "col-lg-3 col-md-3",
+            labelWidth: "col-lg-8 col-md-8",
+		}
 export default InputText

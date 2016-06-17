@@ -1,0 +1,29 @@
+.form .form-section {
+    /*font-family:Oswald;*/
+}
+input.form-control {
+    border: 0;
+    border-bottom: 1px dotted #c2cad8;
+    background-color: transparent !important;
+}
+textarea.form-control {
+    border: 0 ;
+    border-bottom: 1px dotted #c2cad8 ;
+    background-color: transparent !important;
+}
+select.form-control {
+    border: 0 ;
+    border-bottom: 1px dotted #c2cad8 ;
+    background-color: transparent !important;
+}
+
+.text-right: {
+    text-align: right;
+} 
+
+.border-left {
+    border-left: 1px solid #e5e5e5;
+}
+.border-right {
+    border-right: 1px solid #e5e5e5;
+}

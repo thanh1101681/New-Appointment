@@ -12,14 +12,7 @@ class InputTextarea extends Component {
 		hide: PropTypes.bool,
 		labelWidth: PropTypes.string,
         inputWidth: PropTypes.string,
-	}
-	getDefaultProps(){
-		return {
-			type: 1,
-			hide: false,
-			className: "col-lg-3 col-md-3",
-            labelWidth: "col-lg-8 col-md-8",
-		};
+        classInput: PropTypes.string
 	}
 	componentDidMount(){
 		if(this.props.hide == true)
@@ -78,8 +71,24 @@ class InputTextarea extends Component {
 					</textarea> {help_block}
 				</div>
 			</div>;
-		var r = this.props.type == 2 ? r2 : r1;
+		var r3 = 
+			<div className="form-group">
+                <label className={this.props.labelWidth}>{this.props.label}</label>
+                <div className={this.props.inputWidth}>
+                    <textarea className={"form-control " + this.props.classInput} 
+                    		  ref="textarea" 
+                    		  placeholder={this.props.placeholder}
+                    		  name={this.props.name}></textarea>
+                </div>
+            </div>;
+		var r = this.props.type == 1 ? r1 : this.props.type == 2 ? r2 : r3;
 		return <div>{r}</div>;
 	}
+}
+InputTextarea.defaultProps = {
+	type: 1,
+	hide: false,
+	inputWidth: "col-lg-8 col-md-8 col-xs-8",
+    labelWidth: "control-label text-right col-lg-3 col-md-3 col-xs-3"
 }
 export default InputTextarea

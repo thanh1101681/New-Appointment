@@ -14,6 +14,15 @@ const Service = {
 	uploadFile(params) {
 		return axios.post('http://localhost:3005/api/uploadFileWithoutLogin?userUID=2cfeebaf-48c5-4f04-8047-55ae3e680da1&fileType=ProfileImage', params);
 	},
+	listSite() {
+		return axios.get('https://localhost:3005/api/site/list')
+	},
+	listService() {
+		return axios.get('https://localhost:3005/api/service/list')
+	},
+	listCountry() {
+		return axios.get('https://localhost:3005/api/patient/get-listcountry')
+	}
 }
 
 export default Service
