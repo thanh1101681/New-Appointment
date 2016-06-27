@@ -10,7 +10,12 @@ module.exports = {
                         !_.isEmpty(success.transaction)) {
                         success.transaction.commit()
                             .then(function(cSuccess) {
-                                res.ok({ status: 'success' });
+                                var data = JSON.parse(JSON.stringify(success.data))
+                                data.Code = HashIDService.Create(parseInt(data.ID))
+                                res.ok({
+                                    status: 'success',
+                                    data: data
+                                });
                             }, function(err) {
                                 res.serverError(err);
                             });

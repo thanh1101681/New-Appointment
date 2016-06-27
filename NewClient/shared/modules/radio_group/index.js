@@ -17,7 +17,6 @@ class RadioGroup extends Component {
 		super()
 	}
 	componentDidMount() {
-
 	}
 	_onClick(val) {
 		var currentRadio = null
@@ -36,14 +35,19 @@ class RadioGroup extends Component {
 		this.props.onChange(val);
 	}
 	_active(val) {
-		var $radio = $(ReactDom.findDOMNode(this.refs['radio_' + val]))
+		var $radio = $(this.refs['radio_'+val])
 		$radio.addClass('btn-primary')
 		$radio.removeClass('active')
 	}
 	_inactive(val) {
-		var $radio = $(ReactDom.findDOMNode(this.refs['radio_' + val]))
+		var $radio = $(this.refs['radio_'+val])
 		$radio.removeClass('btn-primary')
 		$radio.removeClass('active')
+	}
+	_setValue(val) {
+		this._active(val)
+		var $radio = $(':radio[value="' + val + '"]')
+		 $radio.attr('checked', 'checked');
 	}
 	render() {
 		var radioList = this.props.data.map(function(radio_v, radio_i){

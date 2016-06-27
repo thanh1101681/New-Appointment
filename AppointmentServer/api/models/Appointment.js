@@ -165,7 +165,7 @@ module.exports = {
                     !_.isEmpty(appointment.dataValues) &&
                     HelperService.CheckExistData(appointment.dataValues.ID)) {
                     Appointment.update({
-                            Code: HashIDService.Create(appointment.dataValues.ID)
+                            Code: HashIDService.Create(parseInt(appointment.dataValues.ID))
                         }, {
                             where: {
                                 ID: appointment.dataValues.ID

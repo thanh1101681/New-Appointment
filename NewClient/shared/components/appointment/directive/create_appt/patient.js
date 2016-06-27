@@ -2,10 +2,14 @@ import {render} from 'react-dom'
 import React, {Component, PropTypes} from 'react'
 import BasicInfo from './basic_info'
 import ContactInfo from './contact_info'
-import SkinInfo from './skin_info'
+import KinInfo from './kin_info'
 import GPInfo from './gp_info'
 import RadioGroup from '../../../../modules/radio_group'
 class StepPatient extends Component {
+    static propTypes = {
+        defaultValue: PropTypes.object,
+        data: PropTypes.object
+    }
 	constructor() {
 		super()
         this.dataYesNo = [{
@@ -17,10 +21,22 @@ class StepPatient extends Component {
         }]
 	}
 	componentDidMount() {
-
 	}
-    _onChangeSkin(val) {
-        val == 'Y' ? this.refs.skin_info._show() : this.refs.skin_info._hide()
+    componentDidUpdate() {
+        //set value default
+        for(var keyObj in this.refs){
+            if(keyObj &&
+                this.props.defaultValue[keyObj] &&
+                this.refs[keyObj]){
+                this.refs[keyObj]._setValue(this.props.defaultValue[keyObj])
+            }
+        }
+        //hidden default
+        this.refs.kin_info._hide()
+        this.refs.gp_info._hide()
+    }
+    _onChangeKin(val) {
+        val == 'Y' ? this.refs.kin_info._show() : this.refs.kin_info._hide()
     }
     _onChangeGP(val) {
         val == 'Y' ? this.refs.gp_info._show() : this.refs.gp_info._hide()
@@ -31,9 +47,12 @@ class StepPatient extends Component {
                 <h3 className="block text-success">Patient information</h3>
                 <h4 className="form-section">Basic information</h4>
                 {/*Basic infomation*/}
-                <BasicInfo />
+                <BasicInfo defaultValue={this.props.defaultValue}
+                           data={{dataCountry: this.props.data.dataCountry, 
+                           dataLanguage: this.props.data.dataLanguage}}
+                           ref="basic_info" />
                 <h4 className="form-section">Contact information</h4>
-                <ContactInfo />
+                <ContactInfo defaultValue={this.props.defaultValue}/>
                 <h4 className="form-section">Next of kin</h4>
                 <div classNam="row">
                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -44,11 +63,13 @@ class StepPatient extends Component {
                                         classLabel="btn btn-sm btn-default"
                                         classInput="toggle"
                                         data={this.dataYesNo}
-                                        onChange={this._onChangeSkin.bind(this)}
+                                        onChange={this._onChangeKin.bind(this)}
+                                        ref="hasKin"
                                          />
                     </div>
                 </div>
-                <SkinInfo ref="skin_info"/>
+                <KinInfo ref="kin_info" defaultValue={this.props.defaultValue}
+                                        data={{dataCountry: this.props.data.dataCountry}}/>
                 <h4 className="form-section">General Practitioner</h4>
                     <div classNam="row">
                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -60,13 +81,18 @@ class StepPatient extends Component {
                                         classInput="toggle"
                                         data={this.dataYesNo}
                                         onChange={this._onChangeGP.bind(this)}
-                                        ref="GpStatus"
+                                        ref="hasGP"
                                          />
                     </div>
                 </div>
-                <GPInfo ref="gp_info"/>
+                <GPInfo ref="gp_info" defaultValue={this.props.defaultValue}
+                                      data={{dataCountry: this.props.data.dataCountry}}/>
             </div>
 			)
 	}
+}
+StepPatient.defaultProps = {
+    defaultValue: {},
+    data: {}
 }
 export default StepPatient

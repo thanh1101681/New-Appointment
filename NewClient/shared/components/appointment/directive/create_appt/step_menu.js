@@ -34,22 +34,6 @@ class StepMenuCreateAppt extends Component {
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a href="#referral" data-toggle="tab" className="step">
-                        <span className="number"> 4 </span>
-                        <span className="desc">
-                            <i className="fa fa-check"></i> Referral 
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#summary" data-toggle="tab" className="step">
-                        <span className="number"> 5 </span>
-                        <span className="desc">
-                            <i className="fa fa-check"></i> Summary 
-                        </span>
-                    </a>
-                </li>
             </ul>
 			)
 	}

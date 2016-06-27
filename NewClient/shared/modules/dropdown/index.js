@@ -51,7 +51,7 @@ class Dropdown extends Component {
 				required={this.props.required}
 				size={this.props.size}
 				defaultValue={this.props.defaultValue}
-				onChange={this.onChange}>
+				onChange={this._onChange.bind(this)}>
 					{option}
 			</select>;
 		var r1 = 
@@ -64,9 +64,9 @@ class Dropdown extends Component {
 					required={this.props.required}
 					size={this.props.size}
 					defaultValue={this.props.defaultValue}
-					onChange={this.onChange}>
+					onChange={this._onChange.bind(this)}>
 						{option}
-				</select> {help_block}
+				</select>
 			</div>;
 		var r2 = 
 			<div className="form-group" ref="formGroup">
@@ -81,7 +81,7 @@ class Dropdown extends Component {
 						defaultValue={this.props.defaultValue}
 						onChange={this._onChange.bind(this)}>
 							{option}
-					</select> {help_block}
+					</select>
 				</div>
 			</div>;
 		if (this.props.type == 2) return r2;

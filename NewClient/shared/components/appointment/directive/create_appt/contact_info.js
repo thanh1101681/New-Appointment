@@ -16,14 +16,16 @@ class ContactInfo extends Component {
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="PatientAppointment_Address1" />
+			                      name="Appointment_Data_Patient_Address1"
+			                      placeholder="Address 1" />
                     </div>
                     <div className="col-lg-6 col-md-12">
                         <InputText label="Address2: "
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="PatientAppointment_Address2" />
+			                      name="Appointment_Data_Patient_Address2"
+			                      placeholder="Address 2" />
                     </div>
                 </div>
                 <div className="row">
@@ -32,14 +34,16 @@ class ContactInfo extends Component {
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="PatientAppointment_Suburb" />
+			                      name="Appointment_Data_Patient_Suburb" 
+			                      placeholder="Suburb"/>
                     </div>
                     <div className="col-lg-6 col-md-12">
                     	<InputText label="Postcode: "
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="PatientAppointment_Postcode" />                        
+			                      name="Appointment_Data_Patient_Postcode" 
+			                      placeholder="Postcode"/>                        
                     </div>
                 </div>
                 <div className="row">
@@ -48,14 +52,16 @@ class ContactInfo extends Component {
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="PatientAppointment_State" />
+			                      name="Appointment_Data_Patient_State"
+			                      placeholder="State" />
                     </div>
                     <div className="col-lg-6 col-md-12">
                     	<InputText label="Fax number: "
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="PatientAppointment_FaxNumber" />                        
+			                      name="Appointment_Data_Patient_FaxNumber" 
+			                      placeholder="Fax number"/>                        
                     </div>
                 </div>
                 <div className="row">
@@ -64,14 +70,26 @@ class ContactInfo extends Component {
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="PatientAppointment_MobilePhone" />                         
+			                      name="Appointment_Data_Patient_PhoneNumber"
+			                      placeholder="Mobile phone" />                         
                     </div>
                     <div className="col-lg-6 col-md-12">
                         <InputText label="Contact number(H): "
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="PatientAppointment_HomePhone" /> 
+			                      name="Appointment_Data_Patient_HomePhoneNumber"
+			                      placeholder="Home phone" /> 
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-lg-6 col-md-12">
+                    	<InputText label="Contact number(W): "
+			                       type={2}
+			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+			                      name="Appointment_Data_Patient_WorkPhoneNumber"
+			                      placeholder="Work phone" />                         
                     </div>
                 </div>
 			</div>

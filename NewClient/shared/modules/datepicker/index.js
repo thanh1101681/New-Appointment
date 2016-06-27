@@ -9,6 +9,7 @@ class Datepicker extends Component {
         inputWidth: PropTypes.string,
         startDate: PropTypes.string,
         endDate: PropTypes.string,
+        placeholder: PropTypes.string
 	}
 	componentDidMount(){
 		var self = this;
@@ -19,7 +20,10 @@ class Datepicker extends Component {
 			startDate: this.props.startDate,
 			autoclose: !0,
 		}).on("changeDate", function(){
-		});
+			if(typeof this.props.onChange !== 'undefined') {
+			this.props.onChange()
+		}
+		}.bind(this));
 
 		if (this.props.type == 2) {
             $(this.refs.labelWidth).addClass(this.props.labelWidth);
@@ -39,7 +43,7 @@ class Datepicker extends Component {
 			<input type="text" 
 				name={this.props.name}
 				className="form-control" 
-				placeholder="dd/mm/yyyy"
+				placeholder={this.props.placeholder}
 				readOnly="true"
 				required={this.props.required}
 				ref="datepicker"/>;
@@ -50,7 +54,7 @@ class Datepicker extends Component {
 					name={this.props.name}
 					className="form-control" 
 					ref="datepicker"
-					placeholder="dd/mm/yyyy"
+					placeholder={this.props.placeholder}
 					required={this.props.required}
 					readOnly="true" /> {help_block}
 			</div>;
@@ -62,7 +66,7 @@ class Datepicker extends Component {
 						name={this.props.name}
 						className="form-control" 
 						ref="datepicker"
-						placeholder="dd/mm/yyyy"
+						placeholder={this.props.placeholder}
 						required={this.props.required}
 						readOnly="true" /> {help_block}
 				</div>
@@ -76,6 +80,7 @@ class Datepicker extends Component {
 Datepicker.defaultProps = {
 	type: 1,
 	className: "col-lg-3 col-md-3",
-    labelWidth: "col-lg-8 col-md-8"
+    labelWidth: "col-lg-8 col-md-8",
+    placeholder: 'dd/mm/yyyy'
 }
 export default Datepicker

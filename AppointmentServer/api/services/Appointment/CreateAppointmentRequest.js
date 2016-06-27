@@ -1,6 +1,7 @@
 module.exports = function(data, userInfo) {
     var $q = require('q');
     var defer = $q.defer();
+    var appointmentObject = null;
     if (!_.isEmpty(data) &&
         !_.isEmpty(data.Appointment)) {
         sequelize.transaction()
@@ -11,12 +12,13 @@ module.exports = function(data, userInfo) {
                     })
                     .then(function(apptCreated) {
                         var arrayPromise = [];
+                        appointmentObject = apptCreated;
                         //relation Appt - Patient
                         if (!_.isEmpty(data.Patient) &&
                             _.isArray(data.Patient)) {
                             var objRelApptPatient = {
                                 where: data.Patient,
-                                appointmentObject: apptCreated,
+                                appointmentObject: appointmentObject,
                                 transaction: t
                             };
                             arrayPromise.push(Services.RelAppointmentPatient(objRelApptPatient));
@@ -26,7 +28,7 @@ module.exports = function(data, userInfo) {
                             _.isArray(data.Doctor)) {
                             var objRelApptDoctor = {
                                 where: data.Doctor,
-                                appointmentObject: apptCreated,
+                                appointmentObject: appointmentObject,
                                 transaction: t
                             };
                             arrayPromise.push(Services.RelAppointmentDoctor(objRelApptDoctor));
@@ -36,7 +38,7 @@ module.exports = function(data, userInfo) {
                             _.isArray(data.FileUpload)) {
                             var objRelApptFileUpload = {
                                 where: data.FileUpload,
-                                appointmentObject: apptCreated,
+                                appointmentObject: appointmentObject,
                                 transaction: t
                             };
                             arrayPromise.push(Services.RelAppointmentFileUpload(objRelApptFileUpload));
@@ -48,7 +50,7 @@ module.exports = function(data, userInfo) {
                             if (role.isOrganization) {
                                 var objRelApptCompany = {
                                     where: userInfo.ID,
-                                    appointmentObject: apptCreated,
+                                    appointmentObject: appointmentObject,
                                     transaction: t
                                 };
                                 arrayPromise.push(Services.RelAppointmentCompany(objRelApptCompany));
@@ -64,6 +66,7 @@ module.exports = function(data, userInfo) {
                     .then(function(allRelCreated) {
                         defer.resolve({
                             status: 'success',
+                            data: appointmentObject,
                             transaction: t
                         });
                     }, function(err) {

@@ -4,26 +4,14 @@ module.exports = function(data, userInfo) {
     var pagination = PaginationService(data, Appointment);
     Appointment.findAndCountAll({
             attributes: {
-                exclude: ['ID', 'CreatedBy', 'ModifiedDate', 'ModifiedBy']
+                exclude: ['ID', 'CreatedBy', 'ModifiedDate', 'ModifiedBy', 'ApprovalDate']
             },
             include: [{
-                exclude: ['ID', 'CreatedBy', 'ModifiedDate', 'ModifiedBy'],
-                model: Patient,
-                as: 'Patient',
-                where: pagination.Patient,
-                required: !_.isEmpty(pagination.Patient)
-            }, {
                 exclude: ['ID', 'CreatedBy', 'ModifiedDate', 'ModifiedBy'],
                 model: Doctor,
                 as: 'Doctor',
                 where: pagination.Doctor,
                 required: !_.isEmpty(pagination.Doctor)
-            }, {
-                exclude: ['ID', 'CreatedBy', 'ModifiedDate', 'ModifiedBy'],
-                model: FileUpload,
-                as: 'FileUpload',
-                where: pagination.FileUpload,
-                required: !_.isEmpty(pagination.FileUpload)
             }],
             where: pagination.Appointment,
             order: pagination.order,

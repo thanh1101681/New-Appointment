@@ -33,6 +33,12 @@ class InputText extends Component {
 			this.props.onChange(this.refs.formGroup, this.refs.message);
 		}
 	}
+	_onKeyUp(event) {
+		if(event.keyCode==13 && 
+			typeof this.props.onEnter !== 'undefined') {
+			this.props.onEnter()
+		}
+	}
 	_show(){
 		$(this.refs.formGroup).show();
 	}
@@ -51,7 +57,8 @@ class InputText extends Component {
 				className="form-control" 
 				ref="input" 
 				onChange={this._onChange.bind(this)}
-				placeholder={this.props.placeholder} />;
+				placeholder={this.props.placeholder}
+				onKeyUp={this._onKeyUp.bind(this)} />;
 		var r1 = 
 			<div className="form-group" ref="formGroup">
 				<label className="control-label">{this.props.label} {required}</label>
@@ -63,7 +70,8 @@ class InputText extends Component {
 					className="form-control" 
 					ref="input" 
 					onChange={this._onChange.bind(this)}
-					placeholder={this.props.placeholder} /> {help_block}
+					placeholder={this.props.placeholder} 
+					onKeyUp={this._onKeyUp.bind(this)}/> {help_block}
 			</div>;
 		var r2 = 
 			<div className="form-group" ref="formGroup">
@@ -77,7 +85,8 @@ class InputText extends Component {
 						className="form-control" 
 						ref="input" 
 						onChange={this._onChange.bind(this)}
-						placeholder={this.props.placeholder} /> {help_block} <span ref="message" className="hide-element" style={{color:"#e73d4a"}}></span>
+						placeholder={this.props.placeholder} 
+						onKeyUp={this._onKeyUp.bind(this)}/> {help_block} <span ref="message" className="hide-element" style={{color:"#e73d4a"}}></span>
 				</div>
 			</div>;
 		var r = this.props.type == 2 ? r2 : r1;

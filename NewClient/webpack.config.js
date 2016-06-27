@@ -3,7 +3,7 @@ var webpack = require('webpack')
 module.exports = {
   entry: {
     'patient_detail': path.join(process.cwd(), 'shared/components/patient/detail'),
-    // 'appointment_list':path.join(process.cwd(), 'shared/components/appointment/list_appt'),
+    'list_appt':path.join(process.cwd(), 'shared/components/appointment/list_appt'),
     // 'appointment_detail':path.join(process.cwd(), 'shared/components/appointment/detail_appt'),
     'create_appt':path.join(process.cwd(), 'shared/components/appointment/create_appt'),
     // 'request_page': path.join(process.cwd(), 'shared/components/request/request'),

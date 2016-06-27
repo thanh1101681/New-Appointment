@@ -1,84 +1,101 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Appointment List</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Metronic | Form Wizard</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
-
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link href="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
-        <!-- iCheckbox -->
-        <link href="/assets/global/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL PLUGINS -->
-
-    <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+            <!-- select2 -->
+            <link href="/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+            <!-- datepicker -->
+            <link href="/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="/assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
         <link href="/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
-    <!-- END THEME GLOBAL STYLES -->
-
-    <!-- BEGIN THEME LAYOUT STYLES -->
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="/assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/layouts/layout4/css/themes/light.min.css" rel="stylesheet" type="text/css" id="style_color" />
-        <link href="/css/custom.css" rel="stylesheet" type="text/css" />
-        <link href="/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
-    <!-- END THEME LAYOUT STYLES -->
+        <link href="../../css/style.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <link rel="shortcut icon" href="favicon.ico" /> 
+    </head>
+    <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo page-md"> 
+        <!-- BEGIN CONTAINER -->
+            <!-- BEGIN CONTENT -->
+                <!-- BEGIN CONTENT BODY -->
+                <div id="app">
+                </div>
+                <!-- END CONTENT BODY -->
+            <!-- END CONTENT -->
+        <!-- END CONTAINER -->
+        <!-- BEGIN CORE PLUGINS -->
+            <script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+            <script src="/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
 
-    <link href="/toastr/toastr.css" rel="stylesheet"/>
-  </head>
-  <body class="page-md page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo page-sidebar-closed">
-    <div id="app"></div>
-    <!-- CORE WEBSITE -->
-    <script type="text/javascript" src="/js/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/lodash/lodash.js"></script>
-    <!-- END CORE WEBSITE -->
+            <!-- datepicker -->
+            <script src="/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+            <script src="/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+            <script src="/assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+            <script src="/assets/pages/scripts/form-wizard.min.js" type="text/javascript"></script>
+            <!-- datepicker -->
+            <script src="/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+            <script src="/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
+            <script src="/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+            <script src="/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+        <!--lib toastr-->
+         <script src="/toastr/toastr.min.js" type="text/javascript"></script>
+        <!--end-->
+         <!--lib lodash-->
+         <script src="/js/lodash/lodash.js" type="text/javascript"></script>
+        <!--end-->
+        <!--lib jquery.serialize-object-->
+        <script src="/jquery-serialize-object/dist/jquery.serialize-object.min.js" type="text/javascript"></script>
+        <!--end-->
+        <!--lib ui-blockui-->
+        <script src="/assets/pages/scripts/ui-blockui.min.js" type="text/javascript"></script>
+        <!--end-->
+        <!--lib -->
+        <script src="/js/esimakin-twbs-pagination-4a2f5ff/jquery.twbsPagination.min.js">
+        </script>
+        <!--end-->
+        <!-- MODULE -->
+        <script type="text/javascript" src="/public/list_appt.js"></script>
+        <!-- END MODULE -->
+    </body>
 
-    <!-- BEGIN CORE PLUGINS -->
-        <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
-
-    <!-- BEGIN DEPENDENCIES -->
-    <!-- END DEPENDENCIES -->
-
-    <!-- BEGIN APP LEVEL REACT SCRIPTS -->
-    <!-- END APP LEVEL REACT SCRIPTS -->
-
-    <!-- BEGIN MODULES -->
-    <!-- END MODULES -->
-
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <!-- iCheck -->
-        <script src="/assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
-        <!-- fileinput -->
-        <script src="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="/assets/global/scripts/app.js" type="text/javascript"></script>
-    <!-- END THEME GLOBAL SCRIPTS -->
-
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="/assets/global/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
-        <script src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-
-        <!-- iCheck -->
-        <script src="/assets/pages/scripts/form-icheck.min.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <script src="/toastr/toastr.js"></script>
-
-    <!-- MODULE -->
-    <script type="text/javascript" src="/public/appointment_list.js"></script>
-    <!-- END MODULE -->
-
-    <style type="text/css">
-        .hide-element{
-            display: none !important;
-        }
-    </style>
-    
-  </body>
 </html>

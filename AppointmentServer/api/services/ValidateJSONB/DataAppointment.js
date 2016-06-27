@@ -9,7 +9,7 @@ module.exports = function() {
     return schemaValidator({
         type: 'object',
         properties: {
-            PatientAppointment: {
+            Patient: {
                 type: 'object',
                 required: true,
                 properties: {
@@ -40,7 +40,7 @@ module.exports = function() {
                     },
                     FirstName: {
                         type: 'string',
-                        required: false,
+                        required: true,
                         maxLength: 50,
                         messages: {
                             maxLength: 'Too long!'
@@ -56,7 +56,7 @@ module.exports = function() {
                     },
                     LastName: {
                         type: 'string',
-                        required: false,
+                        required: true,
                         maxLength: 255,
                         messages: {
                             maxLength: 'Too long!'
@@ -336,7 +336,7 @@ module.exports = function() {
                     },
                     CreatedBy: {
                         type: 'number',
-                        required: true,
+                        required: false,
                         maxLength: 20,
                         messages: {
                             maxLength: 'Too big!'
