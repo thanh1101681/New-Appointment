@@ -4,7 +4,7 @@ module.exports = {
   entry: {
     'patient_detail': path.join(process.cwd(), 'shared/components/patient/detail'),
     'list_appt':path.join(process.cwd(), 'shared/components/appointment/list_appt'),
-    // 'appointment_detail':path.join(process.cwd(), 'shared/components/appointment/detail_appt'),
+    'read_appt':path.join(process.cwd(), 'shared/components/appointment/read_appt'),
     'create_appt':path.join(process.cwd(), 'shared/components/appointment/create_appt'),
     // 'request_page': path.join(process.cwd(), 'shared/components/request/request'),
     // 'helper_page': path.join(process.cwd(), 'shared/components/helper/helper'),

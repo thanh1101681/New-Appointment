@@ -32,16 +32,18 @@ class RadioGroup extends Component {
 			//call props onChange
 		}.bind(this))
 		this._active(currentRadio)
-		this.props.onChange(val);
+		if(this.props.onChange != 'undefined') {
+			this.props.onChange(val)
+		}
 	}
 	_active(val) {
 		var $radio = $(this.refs['radio_'+val])
-		$radio.addClass('btn-primary')
+		$radio.addClass('btn-success')
 		$radio.removeClass('active')
 	}
 	_inactive(val) {
 		var $radio = $(this.refs['radio_'+val])
-		$radio.removeClass('btn-primary')
+		$radio.removeClass('btn-success')
 		$radio.removeClass('active')
 	}
 	_setValue(val) {

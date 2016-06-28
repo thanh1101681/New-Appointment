@@ -135,6 +135,8 @@ class CreateAppt extends Component {
             var keyTemp = replaceAll(key,'_','.')
             daOP.set(keyTemp, val)
         })
+       //add field FullName
+       daOP.set('Appointment.Data.Patient.FullName', dataObject.Appointment_Data_Patient_LastName + ' ' + dataObject.Appointment_Data_Patient_FirstName)
        App.blockUI({
             arget: '#blockui_sample_1_portlet_body',
             animate: true

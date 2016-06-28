@@ -2,7 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import ReferralTracking from './referral_tracking'
 class TbodyListAppt extends Component {
     static propTypes = {
-        data: PropTypes.array
+        data: PropTypes.array,
+        currentPage: PropTypes.number
     }
 	constructor() {
 		super()
@@ -11,13 +12,14 @@ class TbodyListAppt extends Component {
 
 	}
     _onClick(val) {
-        window.location.href = window.location.origin + '/appointment/read/' + val;
+        window.location.href = window.location.origin + '/appointment/read?uid=' + val;
     }
 	render() {
+        var currentItem = (this.props.currentPage - 1) * 10
         var listAppt = this.props.data.map(function(appt_v, appt_i){
             return (
                 <tr onClick={this._onClick.bind(this, appt_v.UID)} key={'appt_'+appt_i}>
-                    <td>{appt_i + 1}</td>
+                    <td>{currentItem + appt_i + 1}</td>
                     <td className="fit">{(appt_v &&
                         appt_v.Data &&
                         appt_v.Data.Patient) ? appt_v.Data.Patient.LastName + ' ' + appt_v.Data.Patient.FirstName : ''}</td>
@@ -41,6 +43,7 @@ class TbodyListAppt extends Component {
 	}
 }
 TbodyListAppt.defaultProps = {
-    data: []
+    data: [],
+    currentPage: 1
 }
 export default TbodyListAppt

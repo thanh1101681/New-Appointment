@@ -14,16 +14,16 @@ class TheadListAppt extends Component {
             value: 'Received',
             name: 'Received'
         }, {
-            value: 'Appoint Pendding',
+            value: 'Appoint pendding',
             name: 'Appoint Pendding'
         }, {
-            value: 'Appoint Time',
+            value: 'Appoint time',
             name: 'Appoint Time'
         }, {
             value: 'Attended',
             name: 'Attended'
         }, {
-            value: 'Wait List Surgery',
+            value: 'Wait list surgery',
             name: 'Wait List Surgery'
         }, {
             value: 'Finished',
@@ -55,7 +55,7 @@ class TheadListAppt extends Component {
 	componentDidMount() {
 
 	}
-    _onChangeFilter() {
+    _onChangeFilter(offset) {
         var daOP = new DataObjectParser()
         var dataFilter = {}
         var arrayKeyFormatDate = ['Range[0].Appointment.RequestDate[0]',
@@ -73,10 +73,17 @@ class TheadListAppt extends Component {
             if(index != -1) {
                 val = moment(val, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss Z')
             }
+            if(key == "Search[0].Appointment.Data.Patient.FullName.'$iLike'") {
+                val = '%' + val +'%'
+            }
             daOP.set(key,val)
             }
         }
         if(typeof this.props.onFilter !== 'undefined') {
+            daOP._data.Limit = 10
+            if(offset){
+                daOP._data.Offset = offset
+            }
             this.props.onFilter(daOP._data)
         }
     }
@@ -95,7 +102,7 @@ class TheadListAppt extends Component {
                 </tr>
                 <tr>
                     <td></td>
-                    <td><InputText ref="Search[0].Appointment.Data.Patient.FullName" type={0} placeholder="Filter patient" onEnter={this._onChangeFilter.bind(this)} /></td>
+                    <td><InputText ref="Search[0].Appointment.Data.Patient.FullName.'$iLike'" type={0} placeholder="Filter patient" onEnter={this._onChangeFilter.bind(this)} /></td>
                     <td><InputText ref="Search[1].Doctor.FullName" type={0} placeholder="Filter treating practitioner" onEnter={this._onChangeFilter.bind(this)} /></td>
                     <td>
                         <Datepicker ref="Range[0].Appointment.RequestDate[0]" type={0} placeholder="From date" onChange={this._onChangeFilter.bind(this)}/>

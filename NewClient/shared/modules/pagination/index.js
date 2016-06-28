@@ -4,7 +4,7 @@ class Pagination extends Component {
 		super();
 		this.data = {
 			activePage:1,
-            item : 10,
+            item : 1,
             maxButtons: 5,
 		};
 	}
@@ -19,9 +19,14 @@ class Pagination extends Component {
             this.data = obj;
         }
         var self = this;
+        $('#pagination').empty()
+        $('#pagination').removeData("twbs-pagination")
+        $('#pagination').unbind("page")
         $('#pagination').twbsPagination({
+            startPage: this.data.activePage,
             totalPages:this.data.item,
             visiblePages:this.data.maxButtons,
+            initiateStartPageClick: false,
 			onPageClick: function (event, page) {
 				if(typeof self.props.onChange !== 'undefined'){
 		            self.props.onChange(page);
@@ -30,7 +35,6 @@ class Pagination extends Component {
         });
     }
     componentDidMount() {
-
     }
 	render(){
 		return(
