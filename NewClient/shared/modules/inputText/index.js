@@ -71,7 +71,7 @@ class InputText extends Component {
 					ref="input" 
 					onChange={this._onChange.bind(this)}
 					placeholder={this.props.placeholder} 
-					onKeyUp={this._onKeyUp.bind(this)}/> {help_block}
+					onKeyUp={this._onKeyUp.bind(this)}/>
 			</div>;
 		var r2 = 
 			<div className="form-group" ref="formGroup">
@@ -86,7 +86,7 @@ class InputText extends Component {
 						ref="input" 
 						onChange={this._onChange.bind(this)}
 						placeholder={this.props.placeholder} 
-						onKeyUp={this._onKeyUp.bind(this)}/> {help_block} <span ref="message" className="hide-element" style={{color:"#e73d4a"}}></span>
+						onKeyUp={this._onKeyUp.bind(this)}/> <span ref="message" className="hide-element" style={{color:"#e73d4a"}}></span>
 				</div>
 			</div>;
 		var r = this.props.type == 2 ? r2 : r1;

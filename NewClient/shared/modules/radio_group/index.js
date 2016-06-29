@@ -32,7 +32,7 @@ class RadioGroup extends Component {
 			//call props onChange
 		}.bind(this))
 		this._active(currentRadio)
-		if(this.props.onChange != 'undefined') {
+		if(this.props.onChange != undefined) {
 			this.props.onChange(val)
 		}
 	}

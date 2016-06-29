@@ -14,6 +14,7 @@ import Services from '../../services/restfulAPI'
 class ReadAppt extends Component {
     constructor() {
         super()
+        this.dataAppointment = {}
     }
     componentDidMount() {
         //function get query string value
@@ -32,7 +33,10 @@ class ReadAppt extends Component {
     })(window.location.search.substr(1).split('&'))
         Services.readAppointment(qs['uid'])
             .then(function(response){
-                this.dataAppointment = response.data
+                var dataAppointment = response.data
+                _.forEach(dataAppointment, function(appt_v, appt_i){
+                    this.dataAppointment['Appointment.' + appt_i] = appt_v
+                }.bind(this))
                 this.forceUpdate()
             }.bind(this), function(err){
                 toastr.error('Load Appointment failed', 'Error')
