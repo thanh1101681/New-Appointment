@@ -13,7 +13,10 @@ class ListAppt extends Component {
     componentDidMount() {
         this._getListAppointment({
             data: {
-                Limit: 10
+                Limit: 10,
+                Order: [{Appointment: {
+                    'CreatedDate': 'DESC'
+                }}]
             }
         })
     }

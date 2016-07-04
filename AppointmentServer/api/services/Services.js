@@ -1,7 +1,8 @@
 module.exports = {
     //service appointment request
     CreateAppointmentRequest: require('./Appointment/CreateAppointmentRequest'),
-    ReadAppointmentRequest: require('./Appointment/ReadAppointmentRequest'),
+    ReadAppointment: require('./Appointment/ReadAppointment'),
+    ReadPatient: require('./Appointment/ReadPatient'),
     UpdateAppointmentRequest: require('./Appointment/UpdateAppointmentRequest'),
     InitDataAppointment: require('./Appointment/InitDataAppointment'),
     RelAppointmentDoctor: require('./Appointment/RelAppointmentDoctor'),

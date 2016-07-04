@@ -11,7 +11,8 @@ class RadioGroup extends Component {
 		classLabel: PropTypes.string,
 		classInput: PropTypes.string,
 		data: PropTypes.array,
-		onChange: PropTypes.func
+		onChange: PropTypes.func,
+		disabled: PropTypes.bool
 	}
 	constructor() {
 		super()
@@ -19,6 +20,7 @@ class RadioGroup extends Component {
 	componentDidMount() {
 	}
 	_onClick(val) {
+		if(!this.props.disabled) {
 		var currentRadio = null
 		this.props.data.map(function(radio_v, radio_i){
 			if(radio_v.value==val){
@@ -34,6 +36,7 @@ class RadioGroup extends Component {
 		this._active(currentRadio)
 		if(this.props.onChange != undefined) {
 			this.props.onChange(val)
+		}
 		}
 	}
 	_active(val) {
@@ -52,13 +55,14 @@ class RadioGroup extends Component {
 		 $radio.attr('checked', 'checked');
 	}
 	render() {
+		var classLabel = this.props.disabled ? this.props.classLabel + ' disabled': this.props.classLabel
 		var radioList = this.props.data.map(function(radio_v, radio_i){
 			return (
                     <div className={this.props.classRadioList} 
                     	 data-toggle="buttons" 
                     	 key={radio_i+'-group'} 
                     	 onClick={this._onClick.bind(this,radio_v.value)}>
-                        <label className={this.props.classLabel} 
+                        <label className={classLabel} 
                         key={radio_i+'-label'} 
                         ref={"radio_" + radio_v.value}>
                             <input type="radio"

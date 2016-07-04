@@ -32,12 +32,12 @@ class KinInfo extends Component {
             }
         }
   }
-    _hide() {
-        this.$root.addClass('hide')
-    }
-    _show() {
-       this.$root.removeClass('hide') 
-    }
+  _hide() {
+      this.$root.addClass('hide')
+  }
+  _show() {
+     this.$root.removeClass('hide') 
+  }
 	render() {
 		return (
 			<div ref="PatientKinInfo">
@@ -47,18 +47,20 @@ class KinInfo extends Component {
                                    required={true}
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_FirstName"
-                                  placeholder="First name" />
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_FirstName"
+                                   ref="Appointment.Data.PatientKin.FirstName"
+                                   placeholder="First name" />
                     </div>
                     <div className="col-lg-6 col-md-12">
                         <InputText label="Last name: "
                                    required={true}
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_LastName"
-                                  placeholder="Last name" />
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_LastName"
+                                   ref="Appointment.Data.PatientKin.LastName"
+                                   placeholder="Last name" />
                     </div>
                 </div>
                 <div className="row">
@@ -66,17 +68,19 @@ class KinInfo extends Component {
                         <InputText label="Address1: "
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_Address1"
-                                  placeholder="Adress 1" />
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_Address1"
+                                   ref="Appointment.Data.PatientKin.Address1"
+                                   placeholder="Adress 1" />
                     </div>
                     <div className="col-lg-6 col-md-12">
                         <InputText label="Address2: "
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_Address2"
-                                  placeholder="Address 2" />                        
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_Address2"
+                                   ref="Appointment.Data.PatientKin.Address2"
+                                   placeholder="Address 2" />                        
                     </div>
                 </div>
                 <div className="row">
@@ -84,37 +88,39 @@ class KinInfo extends Component {
                         <InputText label="Suburb: "
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_Suburb"
-                                  placeholder="Suburb" />                         
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_Suburb"
+                                   ref="Appointment.Data.PatientKin.Suburb"
+                                   placeholder="Suburb" />                         
                     </div>
                     <div className="col-lg-6 col-md-12">
                         <InputText label="Postcode: "
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_Postcode"
-                                  placeholder="Postcode" /> 
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_Postcode"
+                                   ref="Appointment.Data.PatientKin.Postcode"
+                                   placeholder="Postcode" /> 
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <Dropdown data={this.dataState}
-                        type={2}
-                        label="State :"
-                        labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                            inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                            name="Appointment_Data_PatientKin_State" 
-                            ref="Appointment_Data_PatientKin_State" />
+                                  type={2}
+                                  label="State :"
+                                  labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                  name="Appointment_Data_PatientKin_State" 
+                                  ref="Appointment.Data.PatientKin.State" />
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <Dropdown data={this.props.data.dataCountry}
-                        type={2}
-                        label="Country :"
-                        labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                            inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                            name="Appointment_Data_PatientKin_Country" 
-                            ref="Appointment_Data_PatientKin_Country" />
+                                  type={2}
+                                  label="Country :"
+                                  labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                  name="Appointment_Data_PatientKin_Country" 
+                                  ref="Appointment.Data.PatientKin.Country" />
                     </div>
                 </div>
                 <div className="row">
@@ -122,17 +128,19 @@ class KinInfo extends Component {
                         <InputText label="Contact number(M): "
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_PhoneNumber" 
-                                  placeholder="Mobile phone"/>
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_PhoneNumber" 
+                                   ref="Appointment.Data.PatientKin.PhoneNumber"
+                                   placeholder="Mobile phone"/>
                     </div>
                     <div className="col-lg-6 col-md-12">
                         <InputText label="Contact number(H): "
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_HomePhoneNumber"
-                                  placeholder="Home phone" />                        
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_HomePhoneNumber"
+                                   ref="Appointment.Data.PatientKin.HomePhoneNumber"
+                                   placeholder="Home phone" />                        
                     </div>
                 </div>
                 <div className="row">
@@ -140,9 +148,10 @@ class KinInfo extends Component {
                         <InputText label="Contact number(W): "
                                    type={2}
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                                  inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                  name="Appointment_Data_PatientKin_WorkPhoneNumber"
-                                  placeholder="Work phone" />
+                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                   name="Appointment_Data_PatientKin_WorkPhoneNumber"
+                                   ref="Appointment.Data.PatientKin.WorkPhoneNumber"
+                                   placeholder="Work phone" />
                     </div>
                 </div>
 			</div>

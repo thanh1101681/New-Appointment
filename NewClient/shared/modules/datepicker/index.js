@@ -9,7 +9,8 @@ class Datepicker extends Component {
         inputWidth: PropTypes.string,
         startDate: PropTypes.string,
         endDate: PropTypes.string,
-        placeholder: PropTypes.string
+        placeholder: PropTypes.string,
+        disabled: PropTypes.bool
 	}
 	componentDidMount(){
 		var self = this;
@@ -46,7 +47,7 @@ class Datepicker extends Component {
 				placeholder={this.props.placeholder}
 				readOnly="true"
 				required={this.props.required}
-				ref="datepicker"/>;
+				ref="datepicker" disabled={this.props.disabled}/>;
 		var r1 = 
 			<div className="form-group">
 				<label className="control-label">{this.props.label} {required}</label>
@@ -56,7 +57,7 @@ class Datepicker extends Component {
 					ref="datepicker"
 					placeholder={this.props.placeholder}
 					required={this.props.required}
-					readOnly="true" /> {help_block}
+					readOnly="true" disabled={this.props.disabled} /> {help_block}
 			</div>;
 		var r2 = 
 			<div className="form-group">
@@ -68,7 +69,7 @@ class Datepicker extends Component {
 						ref="datepicker"
 						placeholder={this.props.placeholder}
 						required={this.props.required}
-						readOnly="true" /> {help_block}
+						readOnly="true" disabled={this.props.disabled} /> {help_block}
 				</div>
 			</div>;
 

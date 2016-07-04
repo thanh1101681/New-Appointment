@@ -8,7 +8,8 @@ import InputTextarea from '../../../../modules/inputTextarea'
 
 class Appointment extends Component {
     static propTypes = {
-        data: PropTypes.object
+        data: PropTypes.object,
+        defaultValue: PropTypes.object
     }
 	constructor() {
 		super()
@@ -85,80 +86,63 @@ class Appointment extends Component {
                                         type={2}
                                         labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                         inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                                        ref="Appointment.Data.PreferedDate"/>
+                                        ref="Appointment.FromDate"/>
                             <Timepicker label="Appointment time :" 
                                         type={2}
+                                        data_default_time="00:00"
+                                        labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
+                                        inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
+                                        ref="Appointment.FromTime" />
+                            <Datepicker label="Prefered date :" 
+                                        type={2}
+                                        disabled={true}
+                                        labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                                        inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                                        ref="Appointment.Data.PreferedDate"/>
+                            <Timepicker label="Prefered time :" 
+                                        type={2}
+                                        disabled={true}
                                         data_default_time="00:00"
                                         labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
                                         inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
                                         ref="Appointment.Data.PreferedTime" />
                             <Datepicker label="Request date: " 
                                         type={2}
+                                        disabled={true}
                                         labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
                                         inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
-                                        ref="Appointment.Data.PreferedDate"/>
+                                        ref="Appointment.RequestDate"/>
                             <InputText label="Patient: "
                                        type={2}
-                                       readOnly={true}
+                                       disabled={true}
                                        labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
                                        inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
                                        ref="Appointment.Data.Patient.FullName" />
-                            <InputText label="Referring practitioner: "
-                                       type={2}
-                                       labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
-                                       inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
-                                       ref="Appointment.Data.Patient.FullName" />
-                            <InputText label="Fund type: "
-                                       type={2}
-                                       labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
-                                       inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
-                                       ref="Appointment.Data.Patient.FullName" />
-                            <InputText label="Fund: "
-                                       type={2}
-                                       labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
-                                       inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
-                                       ref="Appointment.Data.Patient.FullName" />
-                            <RadioGroup classGroup="row margin-top-10"
+                            <RadioGroup classGroup="row margin-top-20"
                                         nameGroup="Has GP referral: "
+                                        disabled={true}
                                         classLabelGroup="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
                                         classInputGroup="col-lg-8 col-md-6 col-sm-6 col-xs-6"
                                         classRadioList="btn-group"
                                         classLabel="btn btn-sm btn-default"
                                         classInput="toggle"
                                         data={this.dataYesNo}
-                                        ref="Appointment.SiteID" />
-                            <RadioGroup classGroup="row margin-top-10"
-                                        nameGroup="Type of treament: "
-                                        classLabelGroup="ccontrol-label text-right col-lg-3 col-md-4"
-                                        classInputGroup="col-lg-8 col-md-8"
+                                        ref="hasGP" />
+                            <RadioGroup classGroup="row margin-top-20"
+                                        nameGroup="Site: "
+                                        classLabelGroup="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
+                                        classInputGroup="col-lg-8 col-md-6 col-sm-6 col-xs-6"
                                         classRadioList="btn-group"
                                         classLabel="btn btn-sm btn-default"
                                         classInput="toggle"
-                                        data={this.dataTypeOfTreament}
+                                        data={this.props.defaultValue.dataSite}
                                         ref="Appointment.SiteID" />
-                        </div>
-                        <div className="box">
-                            <h4 className="form-section font-blue-madison">Referral to</h4> 
-                            <InputText label="Speciality: "
-                                       type={2}
-                                       labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
-                                       inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
-                                       ref="Appointment.Data.Patient.FullName" />
-                            <InputText label="Name of speciality (if required): "
-                                       type={2}
-                                       labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
-                                       inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
-                                       ref="Appointment.Data.Patient.FullName" />
-                            <InputText label="Site: "
-                                       type={2}
-                                       labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
-                                       inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
-                                       ref="Appointment.SiteID" />
                             <InputTextarea type={3}
+                               className="margin-top-20"
                                label="Description: "
                                labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
                                inputWidth="col-lg-8 col-md-6 col-sm-6 col-xs-6"
-                               ref="Appointment.Description"
+                               ref="Appointment.Data.Description"
                                placeholder="Description" />
                         </div>
                     </div>
@@ -168,6 +152,9 @@ class Appointment extends Component {
 	}
 }
 Appointment.defaultProps = {
-    data: {}
+    data: {},
+    defaultValue: {
+      dataSite: []
+    }
 }
 export default Appointment

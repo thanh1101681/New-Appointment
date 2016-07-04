@@ -33,7 +33,10 @@ const Service = {
         return axios.post('https://localhost:3017/api/appointment/list', params)
     },
     readAppointment(params) {
-        return axios.get('https://localhost:3017/api/appointment/read/' + params)
+        return axios.get('https://localhost:3017/api/appointment/read/appointment/' + params)
+    },
+    readPatient(params) {
+        return axios.get('https://localhost:3017/api/appointment/read/patient/' + params)
     }
 }
 

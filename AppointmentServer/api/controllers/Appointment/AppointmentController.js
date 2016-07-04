@@ -64,9 +64,25 @@ module.exports = {
                 });
         }
     },
-    ReadAppointmentRequest: function(req, res) {
+    ReadAppointment: function(req, res) {
         var UID = req.param('UID');
-        Services.ReadAppointmentRequest(UID, req.user)
+        Services.ReadAppointment(UID, req.user)
+            .then(function(success) {
+                res.ok(success);
+            }, function(err) {
+                if (HelperService.CheckExistData(err) &&
+                    HelperService.CheckExistData(err.transaction) &&
+                    HelperService.CheckExistData(err.error)) {
+                    err.transaction.rollback();
+                    res.serverError(err.error);
+                } else {
+                    res.serverError(err);
+                }
+            });
+    },
+    ReadPatient: function(req, res) {
+        var UID = req.param('UID');
+        Services.ReadPatient(UID, req.user)
             .then(function(success) {
                 res.ok(success);
             }, function(err) {

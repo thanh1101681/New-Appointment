@@ -12,24 +12,27 @@ class CreateAppt extends Component {
         super()
         //init value default
         this.valueDefaultAppt = {
-            Appointment_Type: 'Onsite',
-            Appointment_Data_PreferedDate: moment().format('DD/MM/YYYY'),
-            Appointment_Data_PreferedTime: moment().format('HH:mm'),
-            Service_ID: 1,
-            Appointment_SiteID: 1
+            'Appointment.Type': 'Onsite',
+            'Appointment.Data.PreferedDate': moment().format('DD/MM/YYYY'),
+            'Service.ID': 1,
+            'Appointment.SiteID': 1
         }
         this.valueDefaultPatient = {
-            Appointment_Data_Patient_Title: 'Mr',
-            Appointment_Data_Patient_DOB: moment().format('DD/MM/YYYY'),
-            Appointment_Data_Patient_Country: 'Australia',
-            Appointment_Data_Patient_GenderRadio: 'Male',
-            Appointment_Data_Patient_IndigenousStatus: 'None',
-            Appointment_Data_Patient_Interpreter: 'N',
-            Appointment_Data_Patient_InterperterLanguage: 'English (United States)',
+            'Appointment.Data.Patient.Title': 'Mr',
+            'Appointment.Data.Patient.DOB': moment().format('DD/MM/YYYY'),
+            'Appointment.Data.Patient.Country': 'Australia',
+            'Appointment.Data.Patient.GenderRadio': 'Male',
+            'Appointment.Data.Patient.IndigenousStatus': 'None',
+            'Appointment.Data.Patient.Interpreter': 'N',
+            'Appointment.Data.Patient.InterperterLanguage': 'English (United States)',
             //Kin - GP
-            hasKin: 'N',
-            hasGP: 'N',
-            Appointment_Data_PatientKin_Country: 'Australia'
+            'hasKin': 'N',
+            'hasGP': 'N',
+            'hasFund': 'N',
+            'hasDVA': 'N',
+            'hasMedicare': 'N',
+            'hasPension': 'N',
+            'Appointment.Data.PatientKin.Country': 'Australia'
         }
     }
     componentDidMount() {
@@ -118,7 +121,7 @@ class CreateAppt extends Component {
         if (!_.isEmpty(serializedObject)) {
             if (serializedObject.Appointment_Data_PreferedDate != '') {
                 serializedObject.Appointment_Data_PreferedDate =
-                    moment(serializedObject.Appointment_Data_PreferedDate, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss Z')
+                    moment(serializedObject.Appointment_Data_PreferedDate + ' ' + serializedObject.PreferedTime, 'DD/MM/YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss Z')
             }
             if (serializedObject.Appointment_Data_Patient_Gender == '') {
                 serializedObject.Appointment_Data_Patient_Gender = serializedObject.Appointment_Data_Patient_GenderRadio
@@ -137,6 +140,14 @@ class CreateAppt extends Component {
         })
        //add field FullName
        daOP.set('Appointment.Data.Patient.FullName', dataObject.Appointment_Data_Patient_LastName + ' ' + dataObject.Appointment_Data_Patient_FirstName)
+       if(dataObject.Appointment_Data_DoctorGP_LastName &&
+        dataObject.Appointment_Data_DoctorGP_LastName) {
+        daOP.set('Appointment.Data.DoctorGP.FullName', dataObject.Appointment_Data_DoctorGP_LastName + ' ' + dataObject.Appointment_Data_DoctorGP_FirstName)
+       }
+       if(dataObject.Appointment_Data_PatientKin_LastName &&
+        dataObject.Appointment_Data_PatientKin_LastName) {
+        daOP.set('Appointment.Data.PatientKin.FullName', dataObject.Appointment_Data_PatientKin_LastName + ' ' + dataObject.Appointment_Data_PatientKin_FirstName)
+       }
        App.blockUI({
             arget: '#blockui_sample_1_portlet_body',
             animate: true

@@ -3,12 +3,24 @@ import PatientBasic from './patient_basic'
 import PatientContact from './patient_contact'
 import PatientMedicare from './patient_medicare'
 class Patient extends Component {
+    static propTypes = {
+        data: PropTypes.object
+    }
 	constructor() {
 		super()
 	}
 	componentDidMount() {
-
 	}
+    componentDidUpdate() {
+        //set value default
+         for (var keyObj in this.refs) {
+             if (keyObj &&
+                 this.props.data[keyObj] &&
+                 this.refs[keyObj]) {
+                 this.refs[keyObj]._setValue(this.props.data[keyObj])
+             }
+         }
+    }
 	render() {
 		return (
 			<div id="tab_patient" className="tab-pane">
@@ -25,13 +37,18 @@ class Patient extends Component {
                         </li>
                     </ul>
                     <div className="tab-content">
-                        <PatientBasic />
-                        <PatientContact />
-                        <PatientMedicare />
+                        <PatientBasic data={this.props.data.patientData}/>
+                        <PatientContact data={this.props.data.patientData}/>
+                        <PatientMedicare data={this.props.data.patientData}/>
                     </div>
                 </div>
             </div>
 			)
 	}
+}
+Patient.defaultProps = {
+    data: {
+        patientData: {}
+    }
 }
 export default Patient

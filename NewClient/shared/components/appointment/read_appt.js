@@ -15,8 +15,10 @@ class ReadAppt extends Component {
     constructor() {
         super()
         this.dataAppointment = {}
+        this.dataSite = []
+        this.dataPatient = {}
     }
-    componentDidMount() {
+    _getParam(paramName) {
         //function get query string value
         var qs = (function(a) {
         if (a == "") return {}
@@ -31,16 +33,88 @@ class ReadAppt extends Component {
         }
         return b
     })(window.location.search.substr(1).split('&'))
-        Services.readAppointment(qs['uid'])
-            .then(function(response){
-                var dataAppointment = response.data
+    return qs[paramName]
+    }
+    componentDidMount() {
+        App.blockUI({
+            arget: '#blockui_sample_1_portlet_body',
+            animate: true
+        })
+        var uid = this._getParam('uid')
+        Promise.all([Services.readAppointment(uid), Services.listSite()])
+        .then(function(responseAll){
+                var data = []
+                _.forEach(responseAll[1].data.data, function(site_v, site_i) {
+                    data.push({ value: site_v.ID, name: site_v.SiteName })
+                })
+                this.dataSite = data
+                var dataAppointment = responseAll[0].data
+                this.dataAppointment['hasGP'] = 'N'
+                dataAppointment.RequestDate = moment(dataAppointment.RequestDate).format('DD/MM/YYYY')
+                if(dataAppointment.FromTime) {
+                    dataAppointment.FromDate = moment(dataAppointment.FromTime).format('DD/MM/YYYY')
+                    dataAppointment.FromTime = moment(dataAppointment.FromTime).format('HH:mm')
+                }
                 _.forEach(dataAppointment, function(appt_v, appt_i){
-                    this.dataAppointment['Appointment.' + appt_i] = appt_v
+                    if(appt_i=='Data') {
+                       this.dataAppointment['Appointment.Data.Patient.FullName'] = appt_v.Patient.FullName
+                       this.dataAppointment['Appointment.Data.Description'] = appt_v.Description
+                       if(appt_v &&
+                        appt_v.DoctorGP) {
+                        this.dataAppointment['Appointment.Data.DoctorGP.FullName'] = appt_v.DoctorGP.FullName
+                        this.dataAppointment['hasGP'] = 'Y'
+                       }
+                    }
+                    else {
+                        this.dataAppointment['Appointment.' + appt_i] = appt_v
+                    }
                 }.bind(this))
+                this.dataAppointment['Appointment.Data.PreferedDate'] = moment(dataAppointment.Data.PreferedDate, 'YYYY-MM-DD HH:mm:ss Z').format('DD/MM/YYYY')
+                this.dataAppointment['Appointment.Data.PreferedTime'] = moment(dataAppointment.Data.PreferedTime, 'HH:mm').format('HH:mm')
+                this.forceUpdate()
+                App.unblockUI()
+        }.bind(this), function(err){
+            toastr.error('Load Appointment failed', 'Error')
+            App.unblockUI()
+        })
+    }
+    _onChangeTab(val) {
+        switch(val) {
+            case 'Appointment': 
+                this._onTabAppointment()
+            break
+            case 'Patient':
+                this._onTabPatient()
+            break
+            case 'ReferringPractitioner':
+                this._onTabReferringPractitioner()
+            break
+            default: break
+        }
+    }
+    _onTabAppointment() {
+    }
+    _onTabPatient() {
+        var uid = this._getParam('uid')
+        Services.readPatient(uid)
+            .then(function(response){
+                var dataPatient = response.data
+                this.dataPatient['Appointment.Data.Patient.Title'] = dataPatient.Data.Patient.Title
+                this.dataPatient['Appointment.Data.Patient.FirstName'] = dataPatient.Data.Patient.FirstName
+                this.dataPatient['Appointment.Data.Patient.MiddleName'] = dataPatient.Data.Patient.MiddleName
+                this.dataPatient['Appointment.Data.Patient.LastName'] = dataPatient.Data.Patient.LastName
+                this.dataPatient['Appointment.Data.Patient.ReferredName'] = dataPatient.Data.Patient.ReferredName
+                this.dataPatient['Appointment.Data.Patient.PreviousName'] = dataPatient.Data.Patient.PreviousName
                 this.forceUpdate()
             }.bind(this), function(err){
-                toastr.error('Load Appointment failed', 'Error')
+                console.log('err', err)
             })
+    }
+    _onTabCompany() {
+
+    }
+    _onTabReferringPractitioner() {
+
     }
     render() {
         return (
@@ -69,12 +143,12 @@ class ReadAppt extends Component {
                                 <div className="form-body">
                                     <div className="tab-vertical-custom margin-bottom-10">
                                         {/*Tab left*/}
-                                        <TabLefReadAppt />
+                                        <TabLefReadAppt onChange={this._onChangeTab.bind(this)}/>
                                         <div className="tab-content">
                                             {/*Appointment*/}
-                                            <Appointment data={this.dataAppointment} />
+                                            <Appointment data={this.dataAppointment} defaultValue={{dataSite: this.dataSite}} />
                                             {/*Patient*/}
-                                            <Patient />
+                                            <Patient data={{dataPatient:this.dataPatient}}/>
                                             {/*Company*/}
                                             <Company />
                                             {/*Referral*/}

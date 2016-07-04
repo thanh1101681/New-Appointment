@@ -12,7 +12,8 @@ class InputTextarea extends Component {
 		hide: PropTypes.bool,
 		labelWidth: PropTypes.string,
         inputWidth: PropTypes.string,
-        classInput: PropTypes.string
+        classInput: PropTypes.string,
+        className: PropTypes.string
 	}
 	componentDidMount(){
 		if(this.props.hide == true)
@@ -21,6 +22,7 @@ class InputTextarea extends Component {
             $(this.refs.labelWidth).addClass(this.props.labelWidth);
             $(this.refs.inputWidth).addClass(this.props.inputWidth);
         }
+        $(this.refs.formGroup).addClass(this.props.className)
 	}
 	_setValue(value){
 		$(this.refs.textarea).val(value);
@@ -72,7 +74,7 @@ class InputTextarea extends Component {
 				</div>
 			</div>;
 		var r3 = 
-			<div className="form-group">
+			<div className="form-group" ref="formGroup">
                 <label className={this.props.labelWidth}>{this.props.label}</label>
                 <div className={this.props.inputWidth}>
                     <textarea className={"form-control " + this.props.classInput} 

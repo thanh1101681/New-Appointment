@@ -56,5 +56,13 @@ module.exports = {
             foreignKey: 'PatientID',
             as: 'Company'
         });
+
+        //Association Patient - PatientFund
+        Patient.hasMany(PatientFund,{
+            foreignKey: 'PatientID'
+        });
+        PatientFund.belongsTo(Patient,{
+            foreignKey: 'PatientID'
+        });
     }
 };

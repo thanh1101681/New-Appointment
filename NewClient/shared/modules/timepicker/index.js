@@ -8,12 +8,13 @@ class Timepicker extends Component {
 		required: PropTypes.bool,
 		labelWidth: PropTypes.string,
         inputWidth: PropTypes.string,
+        disabled: PropTypes.bool
 	}
 	componentDidMount(){
 		var self = this;
 		$(this.refs.timepicker).timepicker({
 			autoclose: false,
-            minuteStep: 1, // cach nhau bao nhieu phut
+            minuteStep: 5, // cach nhau bao nhieu phut
             showSeconds: false, //show giay
             showMeridian: false, // khong su dung kieu format AM PM
 		}).on("change", function(){
@@ -43,7 +44,8 @@ class Timepicker extends Component {
 				timepicker={this.props.timepicker}
 				required={this.props.required}
 				data-default-time={this.props.data_default_time}
-				readOnly="true" />
+				readOnly="true"
+				disabled={this.props.disabled} />
 		// form group
 		var r1 = 
 			<div className="form-group">
@@ -55,7 +57,8 @@ class Timepicker extends Component {
 					placeholder="hh:mm"
 					required={this.props.required}
 					data-default-time={this.props.data_default_time}
-					readOnly="true" /> {help_block}
+					readOnly="true"
+					disabled={this.props.disabled} /> {help_block}
 			</div>;
 
 		// form group inline
@@ -70,7 +73,8 @@ class Timepicker extends Component {
 						placeholder="hh:mm"
 						required={this.props.required}
 						data-default-time={this.props.data_default_time}
-						readOnly="true" /> {help_block}
+						readOnly="true"
+						disabled={this.props.disabled} /> {help_block}
 				</div>
 			</div>;
 		if (this.props.type == 2) return r2;

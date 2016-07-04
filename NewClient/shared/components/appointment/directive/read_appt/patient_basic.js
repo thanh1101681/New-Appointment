@@ -74,7 +74,18 @@ class PatientBasic extends Component {
 	componentDidMount() {
 
 	}
+	componentDidUpdate() {
+    //set value default
+         for (var keyObj in this.refs) {
+             if (keyObj &&
+                 this.props.data.patientData[keyObj] &&
+                 this.refs[keyObj]) {
+                 this.refs[keyObj]._setValue(this.props.data.patientData[keyObj])
+             }
+         }
+  }
 	render() {
+		console.log('dasdasdnsaj', this.props.data)
 		return (
 			 <div className="tab-pane active" id="tab_basic">
                 <h4 className="form-section font-blue-madison">Basic information</h4>
@@ -85,8 +96,7 @@ class PatientBasic extends Component {
 	                            classLabel="btn btn-sm btn-default"
 	                            classInput="toggle"
 	                            data={this.dataTitle}
-	                            name="Appointment_Data_Patient_Title"
-	                            ref="Appointment_Data_Patient_Title" />
+	                            ref="Appointment.Data.Patient.Title" />
 	            <InputText label="First name: "
 	                       type={2}
 	                       labelWidth="control-label text-right col-lg-3 col-md-5 col-sm-5 col-xs-5"
@@ -193,7 +203,8 @@ class PatientBasic extends Component {
 }
 PatientBasic.defaultProps = {
 	data: {
-		dataCountry: []
+		dataCountry: [],
+		patientData: {}
 	}
 }
 export default PatientBasic

@@ -22,9 +22,8 @@ class StepAppointment extends Component {
             name: 'Telehealth'
         }]
 	}
-	componentDidMount() {
-	}
-    componentDidUpdate() {
+	componentDidMount() {}
+  componentDidUpdate() {
         //set value default
          for (var keyObj in this.refs) {
              if (keyObj &&
@@ -34,42 +33,40 @@ class StepAppointment extends Component {
              }
          }
     }
-    _onChangeSite() {
-    }
 	render() {
 		return (
 			<div className="tab-pane active" id="appointment">
                 <h3 className="block text-success">Appointment information</h3>
                 <div className="row">
                     <Dropdown data={this.dataType}
-                      type={2}
-                      label="Type :"
-                      labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                      name="Appointment_Type" 
-                      ref="Appointment_Type"/>
+                              type={2}
+                              label="Type :"
+                              labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                              inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                              name="Appointment_Type" 
+                              ref="Appointment.Type"/>
                 </div>
                 <Datepicker label="Prefered date :" 
-                    type={2}
-                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                    name="Appointment_Data_PreferedDate" 
-                    ref="Appointment_Data_PreferedDate"/>
+                            type={2}
+                            labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                            inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                            name="Appointment_Data_PreferedDate" 
+                            ref="Appointment.Data.PreferedDate"/>
                 <Timepicker label="Prefered time :" 
-                    type={2}
-                    data_default_time="00:00"
-                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                    name="Appointment_Data_PreferedTime"
-                    ref="Appointment_Data_PreferedTime" />
+                            type={2}
+                            data_default_time="00:00"
+                            labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                            inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                            name="PreferedTime"
+                            ref="PreferedTime" />
                 <div className="row margin-bottom-20">
                     <Dropdown data={this.props.data.dataService}
-                      type={2}
-                      label="Service :"
-                      labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                     name="Service_ID" 
-                     ref="Service_ID"/>
+                              type={2}
+                              label="Service :"
+                              labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                              inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+                              name="Service_ID" 
+                              ref="Service_ID" />
                 </div>
                 <RadioGroup classGroup="row margin-bottom-20" 
                             nameGroup="Site: "
@@ -80,16 +77,14 @@ class StepAppointment extends Component {
                             classInput="toggle"
                             data={this.props.data.dataSite}
                             name="Appointment_SiteID"
-                            onChange={this._onChangeSite.bind(this)}
-                            ref="Appointment_SiteID"
-                             />
+                            ref="Appointment.SiteID" />
                 <InputTextarea name="PatientAppointment_OtherSpecialNeeds"
                                type={3}
                                label="Other special needs: "
                                labelWidth="control-label text-right col-lg-3 col-md-3 col-xs-3"
                                inputWidth="col-lg-8 col-md-8 col-xs-8"
                                name="Appointment_Data_Description"
-                               ref="Appointment_Data_Description"
+                               ref="Appointment.Data.Description"
                                placeholder="Other special needs" />
             </div>
 			)

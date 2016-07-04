@@ -78,8 +78,7 @@ class BasicInfo extends Component {
 			name: 'No'
 		}]
 	}
-	componentDidMount() {
-	}
+	componentDidMount() {}
 	componentDidUpdate() {
 		//set value default
         for(var keyObj in this.refs){
@@ -89,19 +88,17 @@ class BasicInfo extends Component {
                 this.refs[keyObj]._setValue(this.props.defaultValue[keyObj])
             }
         }
-        this.refs.Appointment_Data_Patient_Gender._hide()
-        this.refs.Appointment_Data_Patient_InterperterLanguage._hide()
+        this.refs['Appointment.Data.Patient.Gender']._hide()
+        this.refs['Appointment.Data.Patient.InterperterLanguage']._hide()
 	}
-	_onChangeTitle() {}
 	_onChangeGender(val) {
-		val == 'Other' ? this.refs.Appointment_Data_Patient_Gender._show() :
-		this.refs.Appointment_Data_Patient_Gender._hide()
+		val == 'Other' ? this.refs['Appointment.Data.Patient.Gender']._show() :
+		this.refs['Appointment.Data.Patient.Gender']._hide()
 	}
 	_onChangeInterpreter(val) {
-		val == 'Y' ? this.refs.Appointment_Data_Patient_InterperterLanguage._show() :
-		this.refs.Appointment_Data_Patient_InterperterLanguage._hide()
+		val == 'Y' ? this.refs['Appointment.Data.Patient.InterperterLanguage']._show() :
+		this.refs['Appointment.Data.Patient.InterperterLanguage']._hide()
 	}
-	_onChangeIndigenousStatus() {}
 	render() {
 		return (
 			<div>
@@ -111,20 +108,20 @@ class BasicInfo extends Component {
                         		   required={true} 
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="Appointment_Data_Patient_FirstName"
-			                      ref="Appointment_Data_Patient_FirstName"
-			                      placeholder="First name" />
+			                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+			                       name="Appointment_Data_Patient_FirstName"
+			                       ref="Appointment.Data.Patient.FirstName"
+			                       placeholder="First name" />
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <InputText label="Last name :"
                         		   required={true} 
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="Appointment_Data_Patient_LastName"
-			                      ref="Appointment_Data_Patient_LastName"
-			                      placeholder="Last name" />
+			                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+			                       name="Appointment_Data_Patient_LastName"
+			                       ref="Appointment.Data.Patient.LastName"
+			                       placeholder="Last name" />
                     </div>
                 </div>
                 <div className="row">
@@ -132,19 +129,19 @@ class BasicInfo extends Component {
                         <InputText label="Preferred name :"
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="Appointment_Data_Patient_PreferredName"
-			                      ref="Appointment_Data_Patient_PreferredName" 
-			                      placeholder="Preferred name"/>
+			                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+			                       name="Appointment_Data_Patient_PreferredName"
+			                       ref="Appointment.Data.Patient.PreferredName" 
+			                       placeholder="Preferred name"/>
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <InputText label="Previous name :"
 			                       type={2}
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
-			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-			                      name="Appointment_Data_Patient_PreviousName"
-			                      ref="Appointment_Data_Patient_PreviousName"
-			                      placeholder="Previous name" />
+			                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+			                       name="Appointment_Data_Patient_PreviousName"
+			                       ref="Appointment.Data.Patient.PreviousName"
+			                       placeholder="Previous name" />
                     </div>
                 </div>
                 <div className="row">
@@ -157,9 +154,7 @@ class BasicInfo extends Component {
 	                            classInput="toggle"
 	                            data={this.dataTitle}
 	                            name="Appointment_Data_Patient_Title"
-	                            ref="Appointment_Data_Patient_Title"
-	                            onChange={this._onChangeTitle.bind(this)}
-	                             />
+	                            ref="Appointment.Data.Patient.Title" />
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 	                    <Dropdown data={this.dataMaritalStatus}
 	            		  type={2}
@@ -167,7 +162,7 @@ class BasicInfo extends Component {
 	            		  labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 	                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 	                      name="Appointment_Data_Patient_MaritalStatus"
-	                      ref="Appointment_Data_Patient_MaritalStatus"/>
+	                      ref="Appointment.Data.Patient.MaritalStatus"/>
                     </div>
                 </div>
                 <div className="row">
@@ -178,7 +173,7 @@ class BasicInfo extends Component {
 			            		  labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 			                      name="Appointment_Data_Patient_Country" 
-			                      ref="Appointment_Data_Patient_Country" />
+			                      ref="Appointment.Data.Patient.Country" />
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <Datepicker label="Date of birth: " 
@@ -186,7 +181,7 @@ class BasicInfo extends Component {
 				                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 				                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 				                    name="Appointment_Data_Patient_DOB"
-				                    ref="Appointment_Data_Patient_DOB" />
+				                    ref="Appointment.Data.Patient.DOB" />
                     </div>
                 </div>
                 <div className="row">
@@ -199,15 +194,15 @@ class BasicInfo extends Component {
 		                            classInput="toggle"
 		                            data={this.dataGender}
 		                            name="Appointment_Data_Patient_GenderRadio"
-		                            onChange={this._onChangeGender.bind(this)} 
-		                            ref="Appointment_Data_Patient_GenderRadio" />
+		                            ref="Appointment.Data.Patient.GenderRadio"
+		                            onChange={this._onChangeGender.bind(this)} />
 		                <InputText  label=""
 		                			required={true} 
 				                    type={2}
 				                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 				                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 				                    name="Appointment_Data_Patient_Gender"
-				                    ref="Appointment_Data_Patient_Gender"
+				                    ref="Appointment.Data.Patient.Gender"
 				                    placeholder="Other" />
                     </div>
                     <RadioGroup classGroup="col-lg-6 col-md-12 col-sm-12 col-xs-12" 
@@ -219,10 +214,9 @@ class BasicInfo extends Component {
 	                            classInput="toggle"
 	                            data={this.dataIndigenousStatus}
 	                            name="Appointment_Data_Patient_IndigenousStatus"
-	                            ref="Appointment_Data_Patient_IndigenousStatus"
-	                             onChange={this._onChangeIndigenousStatus.bind(this)}/>
+	                            ref="Appointment.Data.Patient.IndigenousStatus" />
                 </div>
-                <div className="row margin-top-10">
+                <div className="row margin-top-20">
 	                <RadioGroup classGroup="col-lg-6 col-md-12 col-sm-12 col-xs-12" 
 		                            nameGroup="Interpreter: "
 		                            classLabelGroup="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
@@ -232,8 +226,8 @@ class BasicInfo extends Component {
 		                            classInput="toggle"
 		                            data={this.dataYesNo}
 		                            name="Appointment_Data_Patient_Interpreter"
-		                            onChange={this._onChangeInterpreter.bind(this)} 
-		                            ref="Appointment_Data_Patient_Interpreter" />
+		                            ref="Appointment.Data.Patient.Interpreter"
+		                            onChange={this._onChangeInterpreter.bind(this)} />
                 </div>
                 <div className="row margin-top-10">
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -244,17 +238,17 @@ class BasicInfo extends Component {
 			            		  labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 			                      name="Appointment_Data_Patient_InterperterLanguage" 
-			                      ref="Appointment_Data_Patient_InterperterLanguage" />
+			                      ref="Appointment.Data.Patient.InterperterLanguage" />
                 	</div>
                 </div>
-                <div className="row">
+                <div className="row margin-top-10">
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     	<InputTextarea name="Appointment_Data_Patient_OtherSpecialNeeds"
                     				   type={3}
                     	               label="Other special needs: "
                     	               labelWidth="control-label text-right col-lg-3 col-md-3 col-xs-3"
                     	               inputWidth="col-lg-8 col-md-8 col-xs-8"
-                    	               ref="Appointment_Data_Patient_OtherSpecialNeeds"
+                    	               ref="Appointment.Data.Patient.OtherSpecialNeeds"
                     	               placeholder="Other special needs" />
                     </div>
                 </div>
