@@ -33,6 +33,18 @@ class StepAppointment extends Component {
              }
          }
     }
+  _getValue() {
+    var data = {}
+    for(var key in this.refs) {
+      if(key &&
+        this.refs[key] &&
+        this.refs[key]._getValue() &&
+        this.refs[key]._getValue()!='') {
+        data[key] = this.refs[key]._getValue()
+      }
+    }
+    return data
+  }
 	render() {
 		return (
 			<div className="tab-pane active" id="appointment">
@@ -58,7 +70,7 @@ class StepAppointment extends Component {
                             labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                             inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                             name="PreferedTime"
-                            ref="PreferedTime" />
+                            ref="Appointment.Data.PreferedTime" />
                 <div className="row margin-bottom-20">
                     <Dropdown data={this.props.data.dataService}
                               type={2}
@@ -66,7 +78,7 @@ class StepAppointment extends Component {
                               labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                               inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                               name="Service_ID" 
-                              ref="Service_ID" />
+                              ref="Service.ID" />
                 </div>
                 <RadioGroup classGroup="row margin-bottom-20" 
                             nameGroup="Site: "

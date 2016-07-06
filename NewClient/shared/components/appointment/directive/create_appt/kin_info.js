@@ -38,6 +38,19 @@ class KinInfo extends Component {
   _show() {
      this.$root.removeClass('hide') 
   }
+  _getValue() {
+      var data = {}
+      for(var key in this.refs) {
+        if(key &&
+          key != 'PatientKinInfo' &&
+          this.refs[key] &&
+          this.refs[key]._getValue() &&
+          this.refs[key]._getValue() != '') {
+          data[key] = this.refs[key]._getValue()
+        }
+      }
+      return data
+    }
 	render() {
 		return (
 			<div ref="PatientKinInfo">
@@ -49,7 +62,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_FirstName"
-                                   ref="Appointment.Data.PatientKin.FirstName"
+                                   ref="FirstName"
                                    placeholder="First name" />
                     </div>
                     <div className="col-lg-6 col-md-12">
@@ -59,7 +72,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_LastName"
-                                   ref="Appointment.Data.PatientKin.LastName"
+                                   ref="LastName"
                                    placeholder="Last name" />
                     </div>
                 </div>
@@ -70,7 +83,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_Address1"
-                                   ref="Appointment.Data.PatientKin.Address1"
+                                   ref="Address1"
                                    placeholder="Adress 1" />
                     </div>
                     <div className="col-lg-6 col-md-12">
@@ -79,7 +92,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_Address2"
-                                   ref="Appointment.Data.PatientKin.Address2"
+                                   ref="Address2"
                                    placeholder="Address 2" />                        
                     </div>
                 </div>
@@ -90,7 +103,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_Suburb"
-                                   ref="Appointment.Data.PatientKin.Suburb"
+                                   ref="Suburb"
                                    placeholder="Suburb" />                         
                     </div>
                     <div className="col-lg-6 col-md-12">
@@ -99,7 +112,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_Postcode"
-                                   ref="Appointment.Data.PatientKin.Postcode"
+                                   ref="Postcode"
                                    placeholder="Postcode" /> 
                     </div>
                 </div>
@@ -111,7 +124,7 @@ class KinInfo extends Component {
                                   labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                   name="Appointment_Data_PatientKin_State" 
-                                  ref="Appointment.Data.PatientKin.State" />
+                                  ref="State" />
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <Dropdown data={this.props.data.dataCountry}
@@ -120,7 +133,7 @@ class KinInfo extends Component {
                                   labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                   inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                   name="Appointment_Data_PatientKin_Country" 
-                                  ref="Appointment.Data.PatientKin.Country" />
+                                  ref="Country" />
                     </div>
                 </div>
                 <div className="row">
@@ -130,7 +143,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_PhoneNumber" 
-                                   ref="Appointment.Data.PatientKin.PhoneNumber"
+                                   ref="PhoneNumber"
                                    placeholder="Mobile phone"/>
                     </div>
                     <div className="col-lg-6 col-md-12">
@@ -139,7 +152,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_HomePhoneNumber"
-                                   ref="Appointment.Data.PatientKin.HomePhoneNumber"
+                                   ref="HomePhoneNumber"
                                    placeholder="Home phone" />                        
                     </div>
                 </div>
@@ -150,7 +163,7 @@ class KinInfo extends Component {
                                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
                                    name="Appointment_Data_PatientKin_WorkPhoneNumber"
-                                   ref="Appointment.Data.PatientKin.WorkPhoneNumber"
+                                   ref="WorkPhoneNumber"
                                    placeholder="Work phone" />
                     </div>
                 </div>

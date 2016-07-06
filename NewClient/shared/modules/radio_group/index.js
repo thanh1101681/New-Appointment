@@ -16,6 +16,7 @@ class RadioGroup extends Component {
 	}
 	constructor() {
 		super()
+		this.val = null
 	}
 	componentDidMount() {
 	}
@@ -40,6 +41,7 @@ class RadioGroup extends Component {
 		}
 	}
 	_active(val) {
+		this.val = val
 		var $radio = $(this.refs['radio_'+val])
 		$radio.addClass('btn-success')
 		$radio.removeClass('active')
@@ -53,6 +55,9 @@ class RadioGroup extends Component {
 		this._active(val)
 		var $radio = $(':radio[value="' + val + '"]')
 		 $radio.attr('checked', 'checked');
+	}
+	_getValue() {
+		return this.val
 	}
 	render() {
 		var classLabel = this.props.disabled ? this.props.classLabel + ' disabled': this.props.classLabel

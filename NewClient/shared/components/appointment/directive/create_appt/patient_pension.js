@@ -15,6 +15,19 @@ class PatientPension extends Component {
 	_show() {
 		this.$root.removeClass('hide')
 	}
+	_getValue() {
+	    var data = {}
+	    for(var key in this.refs) {
+	      if(key &&
+	      	key != 'patient_pension' &&
+	        this.refs[key] &&
+	        this.refs[key]._getValue() &&
+	        this.refs[key]._getValue() != '') {
+	        data[key] = this.refs[key]._getValue()
+	      }
+	    }
+	    return data
+  	}
 	render() {
 		return (
 			<div className="row" ref="patient_pension">
@@ -24,7 +37,7 @@ class PatientPension extends Component {
 		                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 		                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 		                       name="Appointment_Data_PatientFund[3]_PensionNo"
-		                       ref="Appointment.Data.PatientFund[3].PensionNo"
+		                       ref="PensionNo"
 		                       placeholder="HCC/Pension no" />
                 </div>
                 <div className="col-lg-6 col-md-12">
@@ -33,7 +46,7 @@ class PatientPension extends Component {
 		                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 		                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 		                       name="Appointment_Data_PatientFund[3]_Expiry"
-		                       ref="Appointment.Data.PatientFund[3].Expiry"
+		                       ref="Expiry"
 		                       placeholder="Expiry" />
                 </div>
 			</div>

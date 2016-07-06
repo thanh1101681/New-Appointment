@@ -88,17 +88,29 @@ class BasicInfo extends Component {
                 this.refs[keyObj]._setValue(this.props.defaultValue[keyObj])
             }
         }
-        this.refs['Appointment.Data.Patient.Gender']._hide()
-        this.refs['Appointment.Data.Patient.InterperterLanguage']._hide()
+        this.refs['Gender']._hide()
+        this.refs['InterperterLanguage']._hide()
 	}
 	_onChangeGender(val) {
-		val == 'Other' ? this.refs['Appointment.Data.Patient.Gender']._show() :
-		this.refs['Appointment.Data.Patient.Gender']._hide()
+		val == 'Other' ? this.refs['Gender']._show() :
+		this.refs['Gender']._hide()
 	}
 	_onChangeInterpreter(val) {
-		val == 'Y' ? this.refs['Appointment.Data.Patient.InterperterLanguage']._show() :
-		this.refs['Appointment.Data.Patient.InterperterLanguage']._hide()
+		val == 'Y' ? this.refs['InterperterLanguage']._show() :
+		this.refs['InterperterLanguage']._hide()
 	}
+	_getValue() {
+	    var data = {}
+	    for(var key in this.refs) {
+	      if(key &&
+	        this.refs[key] &&
+	        this.refs[key]._getValue() &&
+	        this.refs[key]._getValue() != '') {
+	        data[key] = this.refs[key]._getValue()
+	      }
+	    }
+	    return data
+  	}
 	render() {
 		return (
 			<div>
@@ -110,7 +122,7 @@ class BasicInfo extends Component {
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 			                       name="Appointment_Data_Patient_FirstName"
-			                       ref="Appointment.Data.Patient.FirstName"
+			                       ref="FirstName"
 			                       placeholder="First name" />
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -120,7 +132,7 @@ class BasicInfo extends Component {
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 			                       name="Appointment_Data_Patient_LastName"
-			                       ref="Appointment.Data.Patient.LastName"
+			                       ref="LastName"
 			                       placeholder="Last name" />
                     </div>
                 </div>
@@ -131,7 +143,7 @@ class BasicInfo extends Component {
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 			                       name="Appointment_Data_Patient_PreferredName"
-			                       ref="Appointment.Data.Patient.PreferredName" 
+			                       ref="PreferredName" 
 			                       placeholder="Preferred name"/>
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -140,7 +152,7 @@ class BasicInfo extends Component {
 			                       labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                       inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 			                       name="Appointment_Data_Patient_PreviousName"
-			                       ref="Appointment.Data.Patient.PreviousName"
+			                       ref="PreviousName"
 			                       placeholder="Previous name" />
                     </div>
                 </div>
@@ -154,7 +166,7 @@ class BasicInfo extends Component {
 	                            classInput="toggle"
 	                            data={this.dataTitle}
 	                            name="Appointment_Data_Patient_Title"
-	                            ref="Appointment.Data.Patient.Title" />
+	                            ref="Title" />
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 	                    <Dropdown data={this.dataMaritalStatus}
 	            		  type={2}
@@ -162,7 +174,7 @@ class BasicInfo extends Component {
 	            		  labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 	                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 	                      name="Appointment_Data_Patient_MaritalStatus"
-	                      ref="Appointment.Data.Patient.MaritalStatus"/>
+	                      ref="MaritalStatus"/>
                     </div>
                 </div>
                 <div className="row">
@@ -173,7 +185,7 @@ class BasicInfo extends Component {
 			            		  labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 			                      name="Appointment_Data_Patient_Country" 
-			                      ref="Appointment.Data.Patient.Country" />
+			                      ref="Country" />
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <Datepicker label="Date of birth: " 
@@ -181,7 +193,7 @@ class BasicInfo extends Component {
 				                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 				                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 				                    name="Appointment_Data_Patient_DOB"
-				                    ref="Appointment.Data.Patient.DOB" />
+				                    ref="DOB" />
                     </div>
                 </div>
                 <div className="row">
@@ -194,7 +206,7 @@ class BasicInfo extends Component {
 		                            classInput="toggle"
 		                            data={this.dataGender}
 		                            name="Appointment_Data_Patient_GenderRadio"
-		                            ref="Appointment.Data.Patient.GenderRadio"
+		                            ref="GenderRadio"
 		                            onChange={this._onChangeGender.bind(this)} />
 		                <InputText  label=""
 		                			required={true} 
@@ -202,7 +214,7 @@ class BasicInfo extends Component {
 				                    labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 				                    inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 				                    name="Appointment_Data_Patient_Gender"
-				                    ref="Appointment.Data.Patient.Gender"
+				                    ref="Gender"
 				                    placeholder="Other" />
                     </div>
                     <RadioGroup classGroup="col-lg-6 col-md-12 col-sm-12 col-xs-12" 
@@ -214,7 +226,7 @@ class BasicInfo extends Component {
 	                            classInput="toggle"
 	                            data={this.dataIndigenousStatus}
 	                            name="Appointment_Data_Patient_IndigenousStatus"
-	                            ref="Appointment.Data.Patient.IndigenousStatus" />
+	                            ref="IndigenousStatus" />
                 </div>
                 <div className="row margin-top-20">
 	                <RadioGroup classGroup="col-lg-6 col-md-12 col-sm-12 col-xs-12" 
@@ -226,7 +238,7 @@ class BasicInfo extends Component {
 		                            classInput="toggle"
 		                            data={this.dataYesNo}
 		                            name="Appointment_Data_Patient_Interpreter"
-		                            ref="Appointment.Data.Patient.Interpreter"
+		                            ref="Interpreter"
 		                            onChange={this._onChangeInterpreter.bind(this)} />
                 </div>
                 <div className="row margin-top-10">
@@ -238,7 +250,7 @@ class BasicInfo extends Component {
 			            		  labelWidth="control-label text-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
 			                      inputWidth="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 			                      name="Appointment_Data_Patient_InterperterLanguage" 
-			                      ref="Appointment.Data.Patient.InterperterLanguage" />
+			                      ref="InterperterLanguage" />
                 	</div>
                 </div>
                 <div className="row margin-top-10">
@@ -248,7 +260,7 @@ class BasicInfo extends Component {
                     	               label="Other special needs: "
                     	               labelWidth="control-label text-right col-lg-3 col-md-3 col-xs-3"
                     	               inputWidth="col-lg-8 col-md-8 col-xs-8"
-                    	               ref="Appointment.Data.Patient.OtherSpecialNeeds"
+                    	               ref="OtherSpecialNeeds"
                     	               placeholder="Other special needs" />
                     </div>
                 </div>

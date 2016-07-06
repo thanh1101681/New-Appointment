@@ -3,7 +3,6 @@ import React, {Component, PropTypes} from 'react'
 import StepMenuCreateAppt from './directive/create_appt/step_menu'
 import StepAppointment from './directive/create_appt/appointment'
 import StepPatient from './directive/create_appt/patient'
-import Form from '../../modules/form'
 import DataObjectParser from 'dataobject-parser'
 import ValidateCreateAppt from './directive/create_appt/validate'
 import Services from '../../services/restfulAPI'
@@ -18,13 +17,13 @@ class CreateAppt extends Component {
             'Appointment.SiteID': 1
         }
         this.valueDefaultPatient = {
-            'Appointment.Data.Patient.Title': 'Mr',
-            'Appointment.Data.Patient.DOB': moment().format('DD/MM/YYYY'),
-            'Appointment.Data.Patient.Country': 'Australia',
-            'Appointment.Data.Patient.GenderRadio': 'Male',
-            'Appointment.Data.Patient.IndigenousStatus': 'None',
-            'Appointment.Data.Patient.Interpreter': 'N',
-            'Appointment.Data.Patient.InterperterLanguage': 'English (United States)',
+            'Title': 'Mr',
+            'DOB': moment().format('DD/MM/YYYY'),
+            'Country': 'Australia',
+            'GenderRadio': 'Male',
+            'IndigenousStatus': 'None',
+            'Interpreter': 'N',
+            'InterperterLanguage': 'English (United States)',
             //Kin - GP
             'hasKin': 'N',
             'hasGP': 'N',
@@ -32,7 +31,7 @@ class CreateAppt extends Component {
             'hasDVA': 'N',
             'hasMedicare': 'N',
             'hasPension': 'N',
-            'Appointment.Data.PatientKin.Country': 'Australia'
+            'Country': 'Australia'
         }
     }
     componentDidMount() {
@@ -109,46 +108,20 @@ class CreateAppt extends Component {
 
     }
     _onSubmit() {
-        //replace all charater "find" by "replace"
-        function replaceAll(str, find, replace) {
-             return str.replace(new RegExp(find, 'g'), replace)
-        }
-        //parse data string to json with DataObjectParser
+        var data = {}
+        data = this.refs.appointment._getValue()
+        data = _.merge(data, this.refs.patient._getValue())
         var daOP = new DataObjectParser()
-        var serializedObject = this.refs.formSubmit._getSerializedObject()
-        var dataObject = {}
-        //parse data
-        if (!_.isEmpty(serializedObject)) {
-            if (serializedObject.Appointment_Data_PreferedDate != '') {
-                serializedObject.Appointment_Data_PreferedDate =
-                    moment(serializedObject.Appointment_Data_PreferedDate + ' ' + serializedObject.PreferedTime, 'DD/MM/YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss Z')
-            }
-            if (serializedObject.Appointment_Data_Patient_Gender == '') {
-                serializedObject.Appointment_Data_Patient_Gender = serializedObject.Appointment_Data_Patient_GenderRadio
-            }
-            _.forEach(serializedObject, function(val, key){
-                if(serializedObject[key] != '') {
-                    dataObject[key] = serializedObject[key]
-                }
-            })
-        }
-        //set data for Submit date
-        dataObject.Appointment_RequestDate = moment().format('YYYY-MM-DD HH:mm:ss Z')
-       _.forEach(dataObject, function(val, key){
-            var keyTemp = replaceAll(key,'_','.')
-            daOP.set(keyTemp, val)
-        })
-       //add field FullName
-       daOP.set('Appointment.Data.Patient.FullName', dataObject.Appointment_Data_Patient_LastName + ' ' + dataObject.Appointment_Data_Patient_FirstName)
-       if(dataObject.Appointment_Data_DoctorGP_LastName &&
-        dataObject.Appointment_Data_DoctorGP_LastName) {
-        daOP.set('Appointment.Data.DoctorGP.FullName', dataObject.Appointment_Data_DoctorGP_LastName + ' ' + dataObject.Appointment_Data_DoctorGP_FirstName)
-       }
-       if(dataObject.Appointment_Data_PatientKin_LastName &&
-        dataObject.Appointment_Data_PatientKin_LastName) {
-        daOP.set('Appointment.Data.PatientKin.FullName', dataObject.Appointment_Data_PatientKin_LastName + ' ' + dataObject.Appointment_Data_PatientKin_FirstName)
-       }
-       App.blockUI({
+        _.forEach(data, function(data_v, data_i){
+            daOP.set(data_i, data_v)
+        });
+        //parse field special
+        daOP._data.Appointment.Data.PreferedDate = 
+        moment(daOP._data.Appointment.Data.PreferedDate + ' ' + daOP._data.Appointment.Data.PreferedTime, 'DD/MM/YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss Z')
+        daOP._data.Appointment.Data.Patient.Gender = daOP._data.Appointment.Data.Patient.GenderRadio
+        daOP.set('Appointment.Data.DoctorGP.FullName', daOP._data.Appointment.Data.DoctorGP.LastName + ' ' + daOP._data.Appointment.Data.DoctorGP.FirstName)
+        daOP.set('Appointment.Data.PatientKin.FullName', daOP._data.Appointment.Data.PatientKin.LastName + ' ' + daOP._data.Appointment.Data.PatientKin.FirstName)
+        App.blockUI({
             arget: '#blockui_sample_1_portlet_body',
             animate: true
         })
@@ -195,7 +168,7 @@ class CreateAppt extends Component {
                                     </div>
                                 </div>
                                 <div className="portlet-body form">
-                                    <Form ref="formSubmit" onSubmit={this._onSubmit.bind(this)} className="form-horizontal" id="submit_form">
+                                    <form ref="formSubmit" className="form-horizontal" id="submit_form">
                                         <div className="form-wizard">
                                             <div className="form-body">
                                         {/*menu*/}
@@ -214,10 +187,10 @@ class CreateAppt extends Component {
                                                         Your form validation is successful! 
                                                     </div>
                                                 {/*Appointment infomation*/}
-                                                    <StepAppointment defaultValue={this.valueDefaultAppt} 
+                                                    <StepAppointment ref="appointment" defaultValue={this.valueDefaultAppt} 
                                                     data={{dataService: this.dataService, dataSite: this.dataSite}}/>
                                                 {/*Patient infomation*/}
-                                                    <StepPatient defaultValue={this.valueDefaultPatient} 
+                                                    <StepPatient ref="patient" defaultValue={this.valueDefaultPatient} 
                                                     data={{dataCountry: this.dataCountry, dataLanguage: this.dataLanguage}}/>
                                                     <div className="tab-pane" id="consent">
                                                         <h3 className="block text-success">Consent</h3>
@@ -240,12 +213,12 @@ class CreateAppt extends Component {
                                                 <a ref="button_continue" href="javascript:;" className="btn btn-outline green hide"> Continue
                                                     <i className="fa fa-angle-right"></i>
                                                 </a>
-                                                <button ref="button_submit" type="submit" href="javascript:;" className="btn green button-submit"> Submit
+                                                <a onClick={this._onSubmit.bind(this)} ref="button_submit" type="submit" href="javascript:;" className="btn green button-submit"> Submit
                                                     <i className="fa fa-check"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
-                                    </Form>
+                                    </form>
                                 </div>
                             </div>
                         </div>

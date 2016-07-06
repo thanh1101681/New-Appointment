@@ -36,30 +36,42 @@ class StepPatient extends Component {
             }
         }
         //hidden default
-        this.refs.kin_info._hide()
-        this.refs.gp_info._hide()
-        this.refs.patient_fund._hide()
-        this.refs.patient_dva._hide()
-        this.refs.patient_medicare._hide()
-        this.refs.patient_pension._hide()
+        this.refs['Appointment.Data.PatientKin']._hide()
+        this.refs['Appointment.Data.DoctorGP']._hide()
+        this.refs['Appointment.Data.PatientFund[0].Data']._hide()
+        this.refs['Appointment.Data.PatientFund[1].Data']._hide()
+        this.refs['Appointment.Data.PatientFund[2].Data']._hide()
+        this.refs['Appointment.Data.PatientFund[3].Data']._hide()
     }
     _onChangeKin(val) {
-        val == 'Y' ? this.refs.kin_info._show() : this.refs.kin_info._hide()
+        val == 'Y' ? this.refs['Appointment.Data.PatientKin']._show() : this.refs['Appointment.Data.PatientKin']._hide()
     }
     _onChangeGP(val) {
-        val == 'Y' ? this.refs.gp_info._show() : this.refs.gp_info._hide()
+        val == 'Y' ? this.refs['Appointment.Data.DoctorGP']._show() : this.refs['Appointment.Data.DoctorGP']._hide()
     }
     _onChangeFund(val) {
-        val == 'Y' ? this.refs.patient_fund._show() : this.refs.patient_fund._hide()
+        val == 'Y' ? this.refs['Appointment.Data.PatientFund[0].Data']._show() : this.refs['Appointment.Data.PatientFund[0].Data']._hide()
     }
     _onChangeDVA(val) {
-        val == 'Y' ? this.refs.patient_dva._show() : this.refs.patient_dva._hide()
+        val == 'Y' ? this.refs['Appointment.Data.PatientFund[1].Data']._show() : this.refs['Appointment.Data.PatientFund[1].Data']._hide()
     }
     _onChangeMedicare(val) {
-        val == 'Y' ? this.refs.patient_medicare._show() : this.refs.patient_medicare._hide()
+        val == 'Y' ? this.refs['Appointment.Data.PatientFund[2].Data']._show() : this.refs['Appointment.Data.PatientFund[2].Data']._hide()
     }
     _onChangePension(val) {
-        val == 'Y' ? this.refs.patient_pension._show() : this.refs.patient_pension._hide()
+        val == 'Y' ? this.refs['Appointment.Data.PatientFund[3].Data']._show() : this.refs['Appointment.Data.PatientFund[3].Data']._hide()
+    }
+    _getValue() {
+        var data = {}
+        for(var key in this.refs) {
+          if(key &&
+            this.refs[key] &&
+            this.refs[key]._getValue() &&
+            this.refs[key]._getValue() != '') {
+            data[key] = this.refs[key]._getValue()
+          }
+        }
+        return data
     }
 	render() {
 		return (
@@ -70,7 +82,7 @@ class StepPatient extends Component {
                 <BasicInfo defaultValue={this.props.defaultValue}
                            data={{dataCountry: this.props.data.dataCountry, 
                            dataLanguage: this.props.data.dataLanguage}}
-                           ref="basic_info" />
+                           ref="Appointment.Data.Patient" />
                 <h4 className="form-section">Contact information</h4>
                 <ContactInfo defaultValue={this.props.defaultValue}/>
                 <h4 className="form-section">Next of kin</h4>
@@ -88,7 +100,7 @@ class StepPatient extends Component {
                                          />
                     </div>
                 </div>
-                <KinInfo ref="kin_info" defaultValue={this.props.defaultValue}
+                <KinInfo ref="Appointment.Data.PatientKin" defaultValue={this.props.defaultValue}
                                         data={{dataCountry: this.props.data.dataCountry}}/>
                 <h4 className="form-section">General Practitioner</h4>
                     <div className="row">
@@ -105,7 +117,7 @@ class StepPatient extends Component {
                                          />
                     </div>
                 </div>
-                <GPInfo ref="gp_info" defaultValue={this.props.defaultValue}
+                <GPInfo ref="Appointment.Data.DoctorGP" defaultValue={this.props.defaultValue}
                                       data={{dataCountry: this.props.data.dataCountry}}/>
                  <h4 className="form-section">Patient Fund</h4>
                 <div className="row">
@@ -122,7 +134,7 @@ class StepPatient extends Component {
                                          />
                     </div>
                 </div>
-                <PatientFund ref="patient_fund"/>
+                <PatientFund ref="Appointment.Data.PatientFund[0].Data"/>
                 <div className="row margin-top-20">
                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <RadioGroup     nameGroup="DVA ?"
@@ -137,7 +149,7 @@ class StepPatient extends Component {
                                          />
                     </div>
                 </div>
-                <PatientDVA ref="patient_dva" />
+                <PatientDVA ref="Appointment.Data.PatientFund[1].Data" />
                 <div className="row margin-top-20">
                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <RadioGroup     nameGroup="Medicare ?"
@@ -152,7 +164,7 @@ class StepPatient extends Component {
                                          />
                     </div>
                 </div>
-                <PatientMedicare ref="patient_medicare" />
+                <PatientMedicare ref="Appointment.Data.PatientFund[2].Data" />
                 <div className="row margin-top-20">
                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <RadioGroup     nameGroup="Pension ?"
@@ -167,7 +179,7 @@ class StepPatient extends Component {
                                          />
                     </div>
                 </div>
-                <PatientPension ref="patient_pension" />
+                <PatientPension ref="Appointment.Data.PatientFund[3].Data" />
             </div>
 			)
 	}

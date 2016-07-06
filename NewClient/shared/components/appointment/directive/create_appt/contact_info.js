@@ -5,6 +5,18 @@ class ContactInfo extends Component {
 		super()
 	}
 	componentDidMount() {}
+	_getValue() {
+	    var data = {}
+	    for(var key in this.refs) {
+	      if(key &&
+	        this.refs[key] &&
+	        this.refs[key]._getValue() &&
+	        this.refs[key]._getValue() != '') {
+	        data[key] = this.refs[key]._getValue()
+	      }
+	    }
+	    return data
+  	}
 	render() {
 		return (
 			<div>
